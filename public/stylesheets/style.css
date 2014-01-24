@@ -163,8 +163,37 @@ canvas {
   top: auto;
 }
 canvas#background {
-  background: #000;
+  /*background: #000;*/
 }
 .hide {
   visibility: hidden;
+}
+.ui-wrapper {
+  background-image: url("/images/bg_test.png");
+  background-repeat: no-repeat;
+  width: 1024px;
+  /* + 32 + 32*/
+  height: 512px;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+}
+.ui-wrapper .left,
+.ui-wrapper .right {
+  height: 496px;
+}
+.ui-wrapper .left {
+  background-image: url("/images/bg_test_canv.png");
+  background-repeat: no-repeat;
+  width: 640px;
+  margin: 16px 16px 0px 16px;
+  float: left;
+}
+.ui-wrapper .right {
+  width: 336px;
+  margin: 16px 16px 0px 0px;
+  float: right;
 }

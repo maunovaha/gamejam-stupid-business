@@ -173,7 +173,7 @@ canvas {
 }
 
 canvas#background {
-  background: #000;
+  /*background: #000;*/
 }
 
 canvas#entities {
@@ -184,4 +184,36 @@ canvas#foreground {
 
 .hide {
   visibility: hidden;
+}
+
+.ui-wrapper {
+    background-image: url("/images/bg_test.png");
+    background-repeat: no-repeat;
+    width: 1024px; /* + 32 + 32*/
+    height: 512px;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+
+    .left, .right {
+      height: 496px;
+    }
+
+    .left {
+      background-image: url("/images/bg_test_canv.png");
+      background-repeat: no-repeat;
+      width: 640px;
+      margin: 16px 16px 0px 16px;
+      float: left;
+    }
+
+    .right {
+      width: 336px;
+      margin: 16px 16px 0px 0px;
+      float: right;
+    }
+
 }
