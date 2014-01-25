@@ -105,7 +105,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
 
     if(result.error) {
 
-      this.ui.notification.text(result.error);
+      $('#notification span').animate({
+        opacity: 0
+      }, 150, 'linear', function() {
+        $(this).text(result.error).css({ opacity: 1 });
+      })
 
       return;
 
