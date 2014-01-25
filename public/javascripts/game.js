@@ -15,6 +15,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
 	
 	// Clicksound
 	var click = new Audio('audio/click.ogg');
+	// Registersound
+	var register = new Audio('audio/register.ogg');
 
     // Gameplay related settings
     this.gameplay = {
@@ -115,6 +117,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
     }
 
     // Entity added, play sound!
+	register.play();
 
   };
 
