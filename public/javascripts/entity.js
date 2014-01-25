@@ -12,6 +12,7 @@ define(function() {
 	    this.x = options.x;
 	    this.y = options.y;
 	    this.sprite = options.sprite;
+	    this.tileFactory = options.tileFactory;
 
 	};
 

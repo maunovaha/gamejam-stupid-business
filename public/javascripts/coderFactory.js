@@ -30,14 +30,19 @@ define(['coder'], function(Coder) {
         // Check if room available in this floor
         if(this.hasRoom("coder")) {
 
-          console.log("has room..: " + this.gameplay.money);
-
           // Buy it..
           this.gameplay.money -= this.gameplay.costs["coder"];
-		  
-          //this.gameplay.floors[this.gameplay.currentFloor][type]["0,0"] = entity;
 
-          console.log("has room..: " + this.gameplay.money);
+          // todo: calculate next free position???
+          this.gameplay.floors[this.gameplay.currentFloor]["coder"]["0,0"] = new Coder({
+            type: "coder",
+            x: 0, // calculate
+            y: 0, // calculate
+            sprite: this.tileFactory.getSprite("sitting", "coder"),
+            tileFactory: this.tileFactory
+          });
+
+          result.entity = this.gameplay.floors[this.gameplay.currentFloor]["coder"]["0,0"];
 
           return result;
 

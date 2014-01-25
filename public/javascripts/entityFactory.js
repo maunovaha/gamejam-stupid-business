@@ -14,7 +14,8 @@ define(['tileFactory', 'coderFactory'], function(TileFactory, CoderFactory) {
 			coder: new CoderFactory(gameplay, this.tileFactory),
 			cleaner: null,
 			manager: null,
-			cook: null
+			cook: null,
+      tileFactory: this.tileFactory
 		};
 
 	};

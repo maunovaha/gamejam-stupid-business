@@ -12,7 +12,7 @@ define(['sprite'], function(Sprite) {
 			sitting: "/images/characters_sitting.png",
 			standing: ""
 		};
-		
+
 		this.tilesets = {
 			sitting: {
 				coder: {
@@ -29,6 +29,11 @@ define(['sprite'], function(Sprite) {
 			standing: {}
 		};
 
+    this.images = {
+      sitting: null,
+      standing: null
+    };
+
 	};
 
 	/**
@@ -41,8 +46,8 @@ define(['sprite'], function(Sprite) {
 		 * Initializing sitting sprites... ugly, but works
 		 *
 		 */
-		this.img = new Image();
-		this.img.onload = (function(self, callback) {
+		this.images.sitting = new Image();
+		this.images.sitting.onload = (function(self, callback) {
 			return function() {
 
 				for(var key in self.tilesets.sitting) {
@@ -61,13 +66,13 @@ define(['sprite'], function(Sprite) {
 
 		})(this, callback);
 
-		this.img.onerror = (function(callback) {
+		this.images.sitting.onerror = (function(callback) {
 			return function() {
 				return callback("ERROR_FAILED_TO_LOAD_IMAGE");
 			};
 		})(callback);
 
-		this.img.src = this.paths.sitting;
+		this.images.sitting.src = this.paths.sitting;
 
 	};
 

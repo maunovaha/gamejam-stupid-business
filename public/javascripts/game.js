@@ -1,5 +1,5 @@
-define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
-  function(AnimationFrame, Grid, $, EntityFactory, moment) {
+define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
+  function(AnimationFrame, Grid, $, EntityFactory, moment, Canvas) {
 
 	/**
 	 *
@@ -21,7 +21,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
     this.gameplay = {
       money: 30000,
       time: new Date(1970,01,01).getMilliseconds(),
-      project: "No project randomized..",
+      project: null, // randomize at start?
       costs: {
         coder: 5000,
         cleaner: 2500,
@@ -50,6 +50,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
     // Entity factory
     this.entityFactory = new EntityFactory(this.gameplay);
 
+    // Canvas
+    this.canvas = new Canvas(this.gameplay);
+
     // Ui elements
     this.ui = {
       // Overall
@@ -71,9 +74,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
       cookPrice: $('#cook').find('.price'),
       buyFloorPrice: $('#buy-floor').find('.price'),
       // Person area of selections
-      person: $('#person'),
-      // Canvases
-      canvas: $('#drawable-canvas')
+      person: $('#person')
     };
 
     /**
@@ -213,8 +214,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
 	Game.prototype.draw = function() {
 
     this.refreshUI();
-
-    // Draw entities only from currentFloor
+    this.canvas.draw();
 
 	};
 
