@@ -1,4 +1,4 @@
-define(['reqanim'], function(AnimationFrame) {
+define(['reqanim', 'grid'], function(AnimationFrame, Grid) {
 
 	/**
 	 *
@@ -13,6 +13,10 @@ define(['reqanim'], function(AnimationFrame) {
 	Game.prototype.init = function() {
 
 		console.log("Game init..");
+
+		console.log("Testing Grid functionality");
+
+		this.testGrid();
 
 		var isRunning = true,
 
@@ -70,6 +74,12 @@ define(['reqanim'], function(AnimationFrame) {
 	 */
 	Game.prototype.update = function(dt) {
 
+	};
+
+	Game.prototype.testGrid = function() {
+
+		var kentta = new Grid( { size: 5 });
+		kentta.testGrid();
 	};
 
 	return Game;
