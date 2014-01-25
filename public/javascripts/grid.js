@@ -1,6 +1,6 @@
 
 
-// Creates a Cube 
+// Creates a Cube
 
 define(function() {
 
@@ -39,7 +39,7 @@ define(function() {
 			for (var j = 0; j < this.size; j++) {
 				//console.log( this.board[i][j] );
 				if( this.board[i][j] == 0) {
-					this.board[i][j] = 1; 
+					this.board[i][j] = 1;
 					console.log( "lisatty paikkaan (" +i +")(" + j +")");
 					return;
 				}
@@ -65,21 +65,21 @@ define(function() {
 			j = this.randomizePlace( );
 			//console.log( i + " + " j );
 			if( this.board[i][j] == 0 ) {
-				this.board[i][j] = 1; 
+				this.board[i][j] = 1;
 				console.log( "lisatty paikkaan (" +i +")(" + j +")");
 				return;
 			}
 
-		} while ( not_found == 1 );			
-		
+		} while ( not_found == 1 );
+
 	};
 
 	// deletes the last element
-	
+
 	Grid.prototype.delEntity = function( options ) {
 		for (var i = this.size- 1; i >= 0; i--) {
 			for (var j= this.size - 1; j >= 0; j--) {
-				if( this.board[i][j] == 1) 
+				if( this.board[i][j] == 1)
 				{
 					console.log( "poistetaan");
 					this.board[i][j] = 0;
@@ -93,14 +93,14 @@ define(function() {
 		for (var i = 0; i < this.size; i++) {
 			console.log( this.board[i] );
 
-		}		
+		}
 	};
 
 	// return 1 if empty
 	Grid.prototype.boardFull = function( options ) {
 		for (var i = 0; i < this.size; i++) {
 			for (var j= 0; j < this.size; j++) {
-				if( this.board[i][j] == 1) 
+				if( this.board[i][j] == 1)
 				{
 					return 0;
 				}

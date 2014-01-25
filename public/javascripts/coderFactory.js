@@ -9,6 +9,8 @@ define(['coder'], function(Coder) {
     this.gameplay = gameplay;
     this.tileFactory = tileFactory;
 
+    this.maxCoders = 36;
+
 	};
 
 	/**
@@ -16,8 +18,6 @@ define(['coder'], function(Coder) {
 	 *
 	 */
 	CoderFactory.prototype.addEntity = function() {
-
-		console.log("CoderFactory addEntity called...");
 
     var result = {
       error: null,
@@ -30,19 +30,21 @@ define(['coder'], function(Coder) {
         // Check if room available in this floor
         if(this.hasRoom("coder")) {
 
+          var slot = this.getFreeSlot();
+
           // Buy it..
           this.gameplay.money -= this.gameplay.costs["coder"];
 
           // todo: calculate next free position???
-          this.gameplay.floors[this.gameplay.currentFloor]["coder"]["0,0"] = new Coder({
+          this.gameplay.floors[this.gameplay.currentFloor]["coder"][slot.x + "," + slot.y] = new Coder({
             type: "coder",
-            x: 0, // calculate
-            y: 0, // calculate
+            x: slot.x,
+            y: slot.y,
             sprite: this.tileFactory.getSprite("sitting", "coder"),
             tileFactory: this.tileFactory
           });
 
-          result.entity = this.gameplay.floors[this.gameplay.currentFloor]["coder"]["0,0"];
+          result.entity = this.gameplay.floors[this.gameplay.currentFloor]["coder"][slot.x + "," + slot.y];
 
           return result;
 
@@ -56,14 +58,6 @@ define(['coder'], function(Coder) {
 
     result.error = "Not enough money!";
 
-    /*
-    return new Coder({
-      type: "coder",
-      x: 0,
-      y: 0,
-      sprite: this.tileFactory.getSprite("sitting", "coder")
-    });*/
-
     return result;
 
 	};
@@ -74,7 +68,32 @@ define(['coder'], function(Coder) {
    */
   CoderFactory.prototype.hasRoom = function() {
 
-    return Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length < this.gameplay.maxCoders;
+    return Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length < this.maxCoders;
+
+  };
+
+  /**
+   *
+   *
+   */
+  CoderFactory.prototype.getFreeSlot = function() {
+
+    var isComplete = false;
+
+    do {
+
+      var x = Math.floor(Math.random() * (5 - 0 + 1)) + 0,
+          y = Math.floor(Math.random() * (5 - 0 + 1)) + 0;
+
+      if(typeof this.gameplay.floors[this.gameplay.currentFloor]["coder"][x + "," + y] === "undefined")
+        isComplete = true;
+
+    } while(isComplete === false);
+
+    return {
+      x: x,
+      y: y
+    };
 
   };
 
