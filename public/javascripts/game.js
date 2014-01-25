@@ -12,11 +12,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
 
     // If game is running
     this.isRunning = false;
-	
+
 	// Sounds
 	var click = new Audio('audio/click.ogg');
 	this.register = new Audio('audio/register.ogg');
-
 
     // Gameplay related settings
     this.gameplay = {
@@ -108,10 +107,13 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
 
     var result = this.entityFactory.getFactory(type).addEntity();
 
-
     if(result.error) {
 
-      this.ui.notification.text(result.error);
+      $('#notification span').animate({
+        opacity: 0
+      }, 150, 'linear', function() {
+        $(this).text(result.error).css({ opacity: 1 });
+      })
 
       return;
 
@@ -119,6 +121,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
 	// Entity added, play sound!
 	this.register.currentTime = 0;
 	this.register.play();
+
   };
 
   /**
