@@ -171,6 +171,9 @@ canvas#background {
 .ui-wrapper {
   background-image: url("/images/bg_test.png");
   background-repeat: no-repeat;
+}
+.ui-wrapper,
+.ui-start {
   width: 1024px;
   /* + 32 + 32*/
   height: 512px;
@@ -181,18 +184,26 @@ canvas#background {
   margin: auto;
   position: absolute;
 }
+.ui-wrapper p,
+.ui-start p {
+  color: #fff;
+}
 .ui-wrapper .left,
-.ui-wrapper .right {
+.ui-start .left,
+.ui-wrapper .right,
+.ui-start .right {
   height: 496px;
 }
-.ui-wrapper .left {
+.ui-wrapper .left,
+.ui-start .left {
   background-image: url("/images/bg_test_canv.png");
   background-repeat: no-repeat;
   width: 640px;
   margin: 16px 16px 0px 16px;
   float: left;
 }
-.ui-wrapper .right {
+.ui-wrapper .right,
+.ui-start .right {
   width: 336px;
   margin: 16px 16px 0px 0px;
   float: right;

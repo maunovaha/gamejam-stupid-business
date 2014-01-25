@@ -7,6 +7,7 @@ define(['zepto', 'app'], function($, App) {
 	var init = function() {
 		$(function(){
 			var app = new App();
+			app.init();
 		});
 	};
 
