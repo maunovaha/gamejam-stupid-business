@@ -85,6 +85,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
     $(".profession").click(function(e) {
 
       var type = $(this).attr('id');
+	  click.currentTime = 0;
       click.play();
       self.addEntity(type);
 
