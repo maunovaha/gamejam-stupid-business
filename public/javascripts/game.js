@@ -55,6 +55,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
       money: $('#money'),
       time: $('#time p'),
       project: $('#project'),
+      notification: $('#notification'),
       // Persons
       coder: $('#coder'),
       cleaner: $('#cleaner'),
@@ -106,11 +107,14 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
     var result = this.entityFactory.getFactory(type).addEntity();
 
     if(result.error) {
-      console.log("case: it erros!: " + result.error); // error.message
-      // result.entity?
+
+      this.ui.notification.text(result.error);
+
+      return;
+
     }
 
-    console.log("has room outer..: " + this.gameplay.money);
+    // Entity added, play sound!
 
   };
 
@@ -144,8 +148,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
     this.entityFactory.init(function(err) {
 
       if(err) return alert(err);
-
-      console.log("YEA");
 
       // FPS 30
   		var animFrame = new AnimationFrame(30),
