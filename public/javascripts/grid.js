@@ -15,28 +15,58 @@ define(function() {
 	 */
 	Grid.prototype.init = function() {
 
-			//console.log("Grid init..");
+		//console.log("Grid init..");
 		for (var i = 0; i < 5; i++) {
 			this.board[i] = new Array(5);
-		}
 
-	};
-
-	// place reserved
-	Grid.prototype.addEntity = function( options ) {
-		//console.log( this.board );
-		this.board.push( 1 );
-
-	};
-
-	// place reserved deleted
-	Grid.prototype.delEntity = function( options ) {
-		for (var i = 0; i < 5; i++) {
 			for (var j= 0; j < 5; j++) {
 				this.board[i][j] = 0;
 			}
 		}
+		console.log( this.board );
+
+
 	};
+
+	// add the entity to the first free place
+	Grid.prototype.addEntity = function( ) {
+		console.log( "alussa" );
+		console.log(this.board);
+		for (var i = 0; i < 5; i++) {
+			for (var j = 0; j < 5; j++) {
+				//console.log( this.board[i][j] );
+				if( this.board[i][j] == 0) {
+					this.board[i][j] = 1; 
+					console.log( "FFF");
+					return;
+				}
+			}
+		}
+		// console.log( this.board );
+
+	};
+
+	// deletes the last element
+	Grid.prototype.delEntity = function( options ) {
+		for (var i = 4; i >= 0; i--) {
+			for (var j= 4; j >= 0; j--) {
+				if( this.board[i][j] == 1) 
+				{
+					console.log( "poistetaan");
+					this.board[i][j] = 0;
+				}
+			}
+		}
+	};
+
+	// for dev purp - prints the elements
+	Grid.prototype.printBoard = function( options ) {
+		for (var i = 0; i < 5; i++) {
+			console.log( this.board[i] );
+
+		}		
+	};
+
 
 	// For testing purposes
 
