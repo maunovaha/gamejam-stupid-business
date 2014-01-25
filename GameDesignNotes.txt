@@ -86,12 +86,16 @@ produces 1 unit / tick
 
 Cleaner:
 
+cleans 1 dirt / tick
+
 - Initial cost: 2500$
 - Payrate: 15000$-32500$
 - Dirt decreases floor efficiency 5-50%
 - more coders cause more dirt, more cleaners needed
 
 Cook:
+
+Feeds 3 coders / tick at base level
 
 - Initial cost: 3500$
 - Payrate: 17000$-62000$
