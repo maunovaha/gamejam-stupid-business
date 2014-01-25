@@ -1,5 +1,5 @@
-define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory', 'moment'],
-  function(AnimationFrame, Grid, $, EntityFactory, TileFactory, moment) {
+define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
+  function(AnimationFrame, Grid, $, EntityFactory, moment) {
 
 	/**
 	 *
@@ -13,11 +13,38 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory', 'moment'],
     // If game is running
     this.isRunning = false;
 
-    // Entity factory
-    this.entityFactory = new EntityFactory();
+    // Gameplay related settings
+    this.gameplay = {
+      money: 30000,
+      time: new Date(1970,01,01).getMilliseconds(),
+      project: "No project randomized..",
+      costs: {
+        coder: 5000,
+        cleaner: 2500,
+        manager: 25000,
+        cook: 3500,
+        buyFloor: 150000
+      },
+      // our entities holder per office floors
+      floors: {
+        1: {
+          coder: {
+          },
+          cleaner: {
+          },
+          manager: {
+          },
+          cook: {
+          }
+        }
+      },
+      // floor player is viewing
+      currentFloor: 1,
+      maxCoders: 36
+    };
 
-    // Tile factory
-    this.tileFactory = new TileFactory();
+    // Entity factory
+    this.entityFactory = new EntityFactory(this.gameplay);
 
     // Ui elements
     this.ui = {
@@ -44,20 +71,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory', 'moment'],
       canvas: $('#drawable-canvas')
     };
 
-    // Gameplay related settings
-    this.gameplay = {
-      money: 30000,
-      time: new Date(1970,01,01).getMilliseconds(),
-      project: "No project randomized..",
-      costs: {
-        coder: 5000,
-        cleaner: 2500,
-        manager: 25000,
-        cook: 3500,
-        buyFloor: 150000
-      }
-    };
-
     /**
      * Binding click events
      *
@@ -66,9 +79,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory', 'moment'],
     // Professions..
     $(".profession").click(function(e) {
 
-      alert($(this).attr("id") + " clicked..");
+      var type = $(this).attr('id');
 
-      self.entityFactory.getFactory($(this).attr('id')).addEntity();
+      self.addEntity(type);
 
     });
 
@@ -79,6 +92,31 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory', 'moment'],
 
     });
 
+  };
+
+  /**
+   *
+   *
+   */
+  Game.prototype.addEntity = function(type) {
+
+    var result = this.entityFactory.getFactory(type).addEntity();
+
+    if(result.error) {
+      console.log("case: it erros!: " + result.error); // error.message
+      // result.entity?
+    }
+
+    console.log("has room outer..: " + this.gameplay.money);
+
+  };
+
+  /**
+   *
+   *
+   */
+  Game.prototype.removeEntity = function(type, entity) {
+    /* */
   };
 
 	/**
@@ -100,9 +138,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory', 'moment'],
     this.refreshUI();
 
     // Init tile factory... block until finished
-    this.tileFactory.init(function(err) {
+    this.entityFactory.init(function(err) {
 
-      if(err) return alert("TileFactory.js failed to load, refresh page to try again.");
+      if(err) return alert(err);
+
+      console.log("YEA");
 
       // FPS 30
   		var animFrame = new AnimationFrame(30),
@@ -163,6 +203,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory', 'moment'],
 
     this.refreshUI();
 
+    // Draw entities only from currentFloor
+
 	};
 
 	/**
@@ -172,6 +214,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory', 'moment'],
 	Game.prototype.update = function(dt) {
 
     this.gameplay.time += 10000;
+
+    // Update all entities
 
 	};
 
