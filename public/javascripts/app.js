@@ -16,7 +16,7 @@ define(['game'], function(Game) {
 	 */
 	App.prototype.init = function() {
 
-	var backgroundmusic = new Audio('someSound.ogg'); 
+	var backgroundmusic = new Audio('audio/background.mp3'); 
 	if (typeof myAudio.loop == 'boolean')
 	{
 		backgroundmusic.loop = true;
