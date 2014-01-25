@@ -180,24 +180,51 @@ canvas {
 .ui-start .ui-header {
   height: 32px;
   background: #ccc;
-  text-align: right;
+  padding: 0px;
+  margin: 0px;
   padding-bottom: 8px;
 }
-.ui-wrapper .ui-header .cash,
-.ui-start .ui-header .cash,
-.ui-wrapper .ui-header #time,
-.ui-start .ui-header #time {
+.ui-wrapper .ui-header .notification-area,
+.ui-start .ui-header .notification-area,
+.ui-wrapper .ui-header .status-area,
+.ui-start .ui-header .status-area {
+  padding: 0px;
+  margin: 0px;
+}
+.ui-wrapper .ui-header .notification-area p,
+.ui-start .ui-header .notification-area p,
+.ui-wrapper .ui-header .status-area p,
+.ui-start .ui-header .status-area p {
+  padding-top: 16px;
+  margin: 0px;
+}
+.ui-wrapper .ui-header .notification-area,
+.ui-start .ui-header .notification-area {
+  float: left;
+  text-align: center;
+  width: 640px;
+}
+.ui-wrapper .ui-header .status-area,
+.ui-start .ui-header .status-area {
+  float: right;
+  text-align: right;
+  width: 384px;
+}
+.ui-wrapper .ui-header .status-area .cash,
+.ui-start .ui-header .status-area .cash,
+.ui-wrapper .ui-header .status-area #time,
+.ui-start .ui-header .status-area #time {
   display: inline-block;
   font-weight: bold;
   margin: 0px;
   padding: 0px;
 }
-.ui-wrapper .ui-header .cash,
-.ui-start .ui-header .cash {
+.ui-wrapper .ui-header .status-area .cash,
+.ui-start .ui-header .status-area .cash {
   margin-right: 30px;
 }
-.ui-wrapper .ui-header #time,
-.ui-start .ui-header #time {
+.ui-wrapper .ui-header .status-area #time,
+.ui-start .ui-header .status-area #time {
   margin-right: 16px;
 }
 .ui-content {

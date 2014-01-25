@@ -190,22 +190,42 @@ canvas#drawable-canvas {
   .ui-header {
     height: 32px;
     background: #ccc;
-    text-align: right;
+    padding: 0px;
+    margin: 0px;
     padding-bottom: 8px;
 
-    .cash, #time {
-      display: inline-block;
-      font-weight: bold;
-      margin: 0px;
+    .notification-area, .status-area {
       padding: 0px;
+      margin: 0px;
+      p {
+        padding-top: 16px;
+        margin: 0px;
+      }
     }
-
-    .cash {
-      margin-right: 30px;
+    .notification-area {
+      float: left;
+      text-align: center;
+      width: 640px;
     }
+    .status-area {
+      float: right;
+      text-align: right;
+      width: 384px;
 
-    #time {
-      margin-right: 16px;
+      .cash, #time{
+        display: inline-block;
+        font-weight: bold;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .cash {
+        margin-right: 30px;
+      }
+
+      #time {
+        margin-right: 16px;
+      }
     }
   }
 }
