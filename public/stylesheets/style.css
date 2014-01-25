@@ -260,3 +260,9 @@ canvas {
   color: #fff;
   font-weight: bold;
 }
+.ui-content .right .person-area td {
+  width: 33.3333%;
+}
+.ui-content .right .hidden {
+  display: none;
+}
