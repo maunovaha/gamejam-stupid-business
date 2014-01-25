@@ -117,6 +117,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
 
     }
 	// Entity added, play sound!
+	this.register.currentTime = 0;
 	this.register.play();
   };
 
