@@ -1,4 +1,4 @@
-define(['reqanim', 'grid', 'zepto'], function(AnimationFrame, Grid, $) {
+define(['reqanim', 'grid', 'zepto', 'entityFactory'], function(AnimationFrame, Grid, $, EntityFactory) {
 
 	/**
 	 *
@@ -6,8 +6,14 @@ define(['reqanim', 'grid', 'zepto'], function(AnimationFrame, Grid, $) {
 	 */
 	var Game = function() {
 
+    // self
+    var self = this;
+
     // If game is running
     this.isRunning = false;
+
+    // Entity factory
+    this.entityFactory = new EntityFactory();
 
     // Ui elements
     this.ui = {
@@ -38,6 +44,8 @@ define(['reqanim', 'grid', 'zepto'], function(AnimationFrame, Grid, $) {
     $(".profession").click(function(e) {
 
       alert($(this).attr("id") + " clicked..");
+
+      self.entityFactory.getFactory($(this).attr('id')).addEntity();
 
     });
 
@@ -78,22 +86,26 @@ define(['reqanim', 'grid', 'zepto'], function(AnimationFrame, Grid, $) {
 		 */
 		var loop = function() {
 
-			// delta time (now)
-			now = Date.now();
-			sub = now - then;
-			dt = sub / 1000;
+      if(this.isRunning) {
 
-			// draw
-			self.draw();
+        // delta time (now)
+        now = Date.now();
+        sub = now - then;
+        dt = sub / 1000;
 
-			// update
-			self.update(dt);
+        // draw
+        self.draw();
 
-			// delta time (then)
-			then = now;
+        // update
+        self.update(dt);
 
-			// request next frame
-			animFrame.request(loop);
+        // delta time (then)
+        then = now;
+
+        // request next frame
+        animFrame.request(loop);
+
+      }
 
 		};
 
