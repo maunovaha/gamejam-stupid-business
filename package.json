@@ -1,9 +1,8 @@
 {
-  "name": "business",
+  "name": "stupidbusiness",
   "author": "Mauno Vähä",
   "license": "Copyright",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +14,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/hummerr/business.git"
+    "url": "https://github.com/maunovaha/stupidbusiness.git"
   }
 }
