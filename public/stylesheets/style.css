@@ -150,10 +150,9 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background: #000;
 }
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", sans-serif, Arial, Helvetica;
 }
 canvas {
   width: 640px;
@@ -168,15 +167,11 @@ canvas#background {
 .hide {
   visibility: hidden;
 }
-.ui-wrapper {
-  background-image: url("/images/bg_test.png");
-  background-repeat: no-repeat;
-}
 .ui-wrapper,
 .ui-start {
   width: 1024px;
-  /* + 32 + 32*/
-  height: 512px;
+  height: 544px;
+  /* 32 */
   bottom: 0;
   left: 0;
   top: 0;
@@ -184,27 +179,72 @@ canvas#background {
   margin: auto;
   position: absolute;
 }
-.ui-wrapper p,
-.ui-start p {
-  color: #fff;
+.ui-wrapper .ui-header,
+.ui-start .ui-header {
+  height: 32px;
+  background: #ccc;
+  text-align: right;
+  padding-bottom: 8px;
 }
-.ui-wrapper .left,
-.ui-start .left,
-.ui-wrapper .right,
-.ui-start .right {
+.ui-wrapper .ui-header .cash,
+.ui-start .ui-header .cash,
+.ui-wrapper .ui-header .time,
+.ui-start .ui-header .time {
+  display: inline-block;
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+}
+.ui-wrapper .ui-header .cash,
+.ui-start .ui-header .cash {
+  margin-right: 30px;
+}
+.ui-wrapper .ui-header .time,
+.ui-start .ui-header .time {
+  margin-right: 16px;
+}
+.ui-content {
+  background-image: url("/images/bg_test.png");
+  background-repeat: no-repeat;
+}
+.ui-content {
+  width: 1024px;
+  height: 512px;
+}
+.ui-content .left,
+.ui-content .right {
   height: 496px;
 }
-.ui-wrapper .left,
-.ui-start .left {
+.ui-content .left {
   background-image: url("/images/bg_test_canv.png");
   background-repeat: no-repeat;
   width: 640px;
   margin: 16px 16px 0px 16px;
   float: left;
 }
-.ui-wrapper .right,
-.ui-start .right {
+.ui-content .right {
   width: 336px;
   margin: 16px 16px 0px 0px;
   float: right;
+  overflow: hidden;
+}
+.ui-content .right table {
+  width: 100%;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+.ui-content .right table p {
+  text-align: left;
+}
+.ui-content .right th,
+.ui-content .right td {
+  /* width: */
+}
+.ui-content .right .status-area,
+.ui-content .right .buy-area {
+  margin-bottom: 10px;
+}
+.ui-content .right .status-area p {
+  text-align: center;
 }

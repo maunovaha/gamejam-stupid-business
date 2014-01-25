@@ -2,22 +2,21 @@
  * Variables
  *
  */
-@example: "";
 
 /**
  * Typography
  *
  */
 h1 {
-  font-size:138.5%;  
+  font-size:138.5%;
 }
 
 h2 {
-  font-size:123.1%; 
+  font-size:123.1%;
 }
 
 h3 {
-  font-size:108%;  
+  font-size:108%;
 }
 
 h1,h2,h3 {
@@ -25,13 +24,13 @@ h1,h2,h3 {
 }
 
 h1,h2,h3,h4,h5,h6,strong {
-  font-weight:bold; 
+  font-weight:bold;
 }
 
 abbr,acronym {
   border-bottom:1px dotted #000;
   cursor:help;
-} 
+}
 
 em {
   font-style:italic;
@@ -46,7 +45,7 @@ ol,ul,dl {
 }
 
 ol li {
-  list-style: decimal outside;  
+  list-style: decimal outside;
 }
 
 ul li {
@@ -152,16 +151,15 @@ small {
  * Misc (For all devices)
  *
  */
-html, body { 
-  margin: 0; 
-  padding: 0; 
-  height: 100%; 
-  width: 100%; 
-  background: #000;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", sans-serif, Arial, Helvetica;
 }
 
 canvas {
@@ -186,24 +184,47 @@ canvas#foreground {
   visibility: hidden;
 }
 
-.ui-wrapper {
+.ui-wrapper, .ui-start {
+  width: 1024px;
+  height: 544px; /* 32 */
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+
+  .ui-header {
+    height: 32px;
+    background: #ccc;
+    text-align: right;
+    padding-bottom: 8px;
+
+    .cash, .time {
+      display: inline-block;
+      font-weight: bold;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .cash {
+      margin-right: 30px;
+    }
+
+    .time {
+      margin-right: 16px;
+    }
+  }
+}
+
+.ui-content {
     background-image: url("/images/bg_test.png");
     background-repeat: no-repeat;
 }
 
-.ui-wrapper, .ui-start {
-    width: 1024px; /* + 32 + 32*/
-    height: 512px;
-    bottom: 0;
-    left: 0;
-    top: 0;
-    right: 0;
-    margin: auto;
-    position: absolute;
-
-    p {
-      color: #fff;
-    }
+.ui-content {
+  width: 1024px;
+  height: 512px;
 
     .left, .right {
       height: 496px;
@@ -221,6 +242,34 @@ canvas#foreground {
       width: 336px;
       margin: 16px 16px 0px 0px;
       float: right;
+      overflow: hidden;
+
+      table {
+        width: 100%;
+        border: none;
+        padding: 0px;
+        margin: 0px;
+
+        p {
+          text-align: left;
+        }
+      }
+      th, td {
+        /* width: */
+      }
+      .status-area, .buy-area {
+        margin-bottom: 10px;
+      }
+      .status-area {
+        p {
+          text-align: center;
+        }
+      }
+      .buy-area {
+      }
+      .person-area {
+      }
     }
 
 }
+
