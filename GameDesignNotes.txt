@@ -1,0 +1,102 @@
+Negotiating deals:
+
+- Starting position (i.e. 10000$ and 2 weeks of time)
+- ask more money / ask more time
+- adjust deal accordingly with some random percentage success/failure rate
+- Deals increase in demand / money as business grows
+- Forced to hire coders to make the given time limit
+
+
+
+Companies offering deals
+
+- Crand Grew
+- SoftFingers
+- MicroManagementSoft
+- G-Buy
+- Banana
+- DimSung
+- KabobHut
+- PeopleCars
+- Major Motors
+- Chill -Oil
+- Digital Arts
+
+
+Adjectives for projects offered:
+
+Leading
+Unique
+Platform exclusive
+Innovative
+Real-Time
+Flexible
+Cutting edge
+World class
+Revolutionary
+Sustainable
+Robust
+User friendly
+Extraordinary
+Mission critical
+Seamless
+Iconic
+Enterprise class
+Magical
+Cross-Platform
+Space-age
+Client-Centric
+Next-Gen
+Never been done
+Solution-Driven
+
+Types for projects offered:
+
+Massively Multiplayer Online Game
+Freemium Game
+Candy Crush Game
+Presentation solution
+Documentation software
+Communication software
+Operating System
+Test system
+Database
+Accounting solution
+Customer tracking software
+Website
+Online marketplace
+Gamification Solution
+Augmented Virtual Reality solution
+
+
+Project Manager:
+- Initial cost: 25000$
+- Payrate: 80000-220000$
+- Holds one meeting per day
+- Meeting duration 125%-75%
+
+
+Coder:
+
+- Initial cost to buy: 5000$
+- Payrate: 43000$ - 118000$
+- Efficiency: 50% - 150%
+
+Cleaner:
+
+- Initial cost: 2500$
+- Payrate: 15000$-32500$
+- Dirt decreases floor efficiency 5-50%
+- more coders cause more dirt, more cleaners needed
+
+Cook:
+
+- Initial cost: 3500$
+- Payrate: 17000$-62000$
+- Feeds coders automatically
+
+Floor:
+
+- Initial cost: 150000$
+- Monthly costs: 15000$
+
