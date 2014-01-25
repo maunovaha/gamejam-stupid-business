@@ -161,9 +161,6 @@ canvas {
   left: auto;
   top: auto;
 }
-canvas#background {
-  /*background: #000;*/
-}
 .hide {
   visibility: hidden;
 }
@@ -188,8 +185,8 @@ canvas#background {
 }
 .ui-wrapper .ui-header .cash,
 .ui-start .ui-header .cash,
-.ui-wrapper .ui-header .time,
-.ui-start .ui-header .time {
+.ui-wrapper .ui-header #time,
+.ui-start .ui-header #time {
   display: inline-block;
   font-weight: bold;
   margin: 0px;
@@ -199,12 +196,12 @@ canvas#background {
 .ui-start .ui-header .cash {
   margin-right: 30px;
 }
-.ui-wrapper .ui-header .time,
-.ui-start .ui-header .time {
+.ui-wrapper .ui-header #time,
+.ui-start .ui-header #time {
   margin-right: 16px;
 }
 .ui-content {
-  background-image: url("/images/bg_test.png");
+  background-image: url("/images/bg_test_2.png");
   background-repeat: no-repeat;
 }
 .ui-content {
@@ -219,11 +216,11 @@ canvas#background {
   background-image: url("/images/bg_test_canv.png");
   background-repeat: no-repeat;
   width: 640px;
-  margin: 16px 16px 0px 16px;
+  margin: 16px 0px 0px 16px;
   float: left;
 }
 .ui-content .right {
-  width: 336px;
+  width: 352px;
   margin: 16px 16px 0px 0px;
   float: right;
   overflow: hidden;
@@ -233,13 +230,26 @@ canvas#background {
   border: none;
   padding: 0px;
   margin: 0px;
+  border-collapse: collapse;
 }
 .ui-content .right table p {
   text-align: left;
 }
 .ui-content .right th,
 .ui-content .right td {
-  /* width: */
+  background-image: url("/images/button_bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.ui-content .right th:hover,
+.ui-content .right td:hover {
+  /* */
+}
+.ui-content .right .no-bg,
+.ui-content .right .no-bg:hover {
+  background-image: none;
+  border: none;
 }
 .ui-content .right .status-area,
 .ui-content .right .buy-area {
@@ -247,4 +257,6 @@ canvas#background {
 }
 .ui-content .right .status-area p {
   text-align: center;
+  color: #fff;
+  font-weight: bold;
 }

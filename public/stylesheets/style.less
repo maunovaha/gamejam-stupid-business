@@ -170,14 +170,7 @@ canvas {
   top: auto;
 }
 
-canvas#background {
-  /*background: #000;*/
-}
-
-canvas#entities {
-}
-
-canvas#foreground {
+canvas#drawable-canvas {
 }
 
 .hide {
@@ -200,7 +193,7 @@ canvas#foreground {
     text-align: right;
     padding-bottom: 8px;
 
-    .cash, .time {
+    .cash, #time {
       display: inline-block;
       font-weight: bold;
       margin: 0px;
@@ -211,14 +204,14 @@ canvas#foreground {
       margin-right: 30px;
     }
 
-    .time {
+    #time {
       margin-right: 16px;
     }
   }
 }
 
 .ui-content {
-    background-image: url("/images/bg_test.png");
+    background-image: url("/images/bg_test_2.png");
     background-repeat: no-repeat;
 }
 
@@ -234,12 +227,12 @@ canvas#foreground {
       background-image: url("/images/bg_test_canv.png");
       background-repeat: no-repeat;
       width: 640px;
-      margin: 16px 16px 0px 16px;
+      margin: 16px 0px 0px 16px;
       float: left;
     }
 
     .right {
-      width: 336px;
+      width: 352px;
       margin: 16px 16px 0px 0px;
       float: right;
       overflow: hidden;
@@ -249,13 +242,23 @@ canvas#foreground {
         border: none;
         padding: 0px;
         margin: 0px;
-
+        border-collapse: collapse;
         p {
           text-align: left;
         }
       }
       th, td {
-        /* width: */
+        background-image: url("/images/button_bg.png");
+        background-repeat: repeat-x;
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      th:hover, td:hover {
+        /* */
+      }
+      .no-bg, .no-bg:hover {
+        background-image: none;
+        border: none;
       }
       .status-area, .buy-area {
         margin-bottom: 10px;
@@ -263,6 +266,8 @@ canvas#foreground {
       .status-area {
         p {
           text-align: center;
+          color: #fff;
+          font-weight: bold;
         }
       }
       .buy-area {

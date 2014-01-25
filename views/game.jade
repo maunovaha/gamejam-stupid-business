@@ -4,40 +4,53 @@ block content
   .ui-wrapper
     .ui-header
       .cash
-        p 1 000 000 €
-      .time
+        p
+          span#money 0
+          span.currency  $
+      #time
         p 1.1.1970 00:00
     .ui-content
       .left
-        canvas(width="640", height="480")#background
-          | Oops! Your browser is too OLD to play games with it - no stupid business for you.
-        canvas(width="640", height="480")#foreground
+        canvas(width="640", height="480")#drawable-canvas
           | Oops! Your browser is too OLD to play games with it - no stupid business for you.
       .right
         table.status-area
           thead
-          tbody
               tr
-                td
-                  p Project ongoing: Phones for Microsoft
+                th.no-bg
+                  p Project ongoing:&nbsp;
+                    span#project No project...
         table.buy-area
-          thead
           tbody
             tr
-              td
-                p 5000 € / Coder
-              td
-                p Cleaner
+              td#coder.profession
+                p
+                  span Coder &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
+              td#cleaner.profession
+                p
+                  span Cleaner &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
             tr
-              td
-                p Manager
-              td
-                p Chef
+              td#cook.profession
+                p
+                  span Cook &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
+              td#manager.profession
+                p
+                  span Manager &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
             tr
-              td(colspan="2")
-                p Buy ladder
+              td(colspan="2", id="buy-floor")
+                p
+                  span Buy new floor to office &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
         table.person-area
-          thead
           tbody
             tr
               td
@@ -49,8 +62,7 @@ block content
             tr
               td
                 p Slap
-              td
-                p image
+              td.no-bg#person
               td
                 p Slap
             tr
