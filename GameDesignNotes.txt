@@ -54,7 +54,7 @@ Types for projects offered:
 
 Massively Multiplayer Online Game
 Freemium Game
-Candy Crush Game
+Candy Battlefield Crush of Duty Saga -EdgeScrolls '15 Game
 Presentation solution
 Documentation software
 Communication software
@@ -78,11 +78,15 @@ Project Manager:
 
 Coder:
 
+produces 1 unit / tick
+
 - Initial cost to buy: 5000$
 - Payrate: 43000$ - 118000$
 - Efficiency: 50% - 150%
 
 Cleaner:
+
+cleans 1 dirt / tick
 
 - Initial cost: 2500$
 - Payrate: 15000$-32500$
@@ -90,6 +94,8 @@ Cleaner:
 - more coders cause more dirt, more cleaners needed
 
 Cook:
+
+Feeds 3 coders / tick at base level
 
 - Initial cost: 3500$
 - Payrate: 17000$-62000$
@@ -100,3 +106,13 @@ Floor:
 - Initial cost: 150000$
 - Monthly costs: 15000$
 
+
+OPTIONAL:
+
+UPGRADES:
+Price x3 after each purchase, must buy for all at once
+
+	- Coffeedrips for Coders + 10% efficiency  500$ / coder
+	- Nicotinepatches for Cooks + 10% efficiency  500$ / cook
+	- Improved hoovers for Cleaners + 10% efficiency 1000$ / cleaner
+	- Cuban cigars for Managers + 10% meeting speed  2000$ / Manager
