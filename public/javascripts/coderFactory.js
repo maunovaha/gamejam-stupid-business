@@ -35,7 +35,6 @@ define(['coder'], function(Coder) {
           // Buy it..
           this.gameplay.money -= this.gameplay.costs["coder"];
 		  
-		  register.play();
           //this.gameplay.floors[this.gameplay.currentFloor][type]["0,0"] = entity;
 
           console.log("has room..: " + this.gameplay.money);
