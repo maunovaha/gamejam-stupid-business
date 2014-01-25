@@ -1,5 +1,5 @@
-define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory'],
-  function(AnimationFrame, Grid, $, EntityFactory, TileFactory) {
+define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory', 'moment'],
+  function(AnimationFrame, Grid, $, EntityFactory, TileFactory, moment) {
 
 	/**
 	 *
@@ -32,10 +32,30 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory'],
       cook: $('#cook'),
       // Floor
       buyFloor: $('#buy-floor'),
+      // Prices
+      coderPrice: $('#coder').find('.price'),
+      cleanerPrice: $('#cleaner').find('.price'),
+      managerPrice: $('#manager').find('.price'),
+      cookPrice: $('#cook').find('.price'),
+      buyFloorPrice: $('#buy-floor').find('.price'),
       // Person area of selections
       person: $('#person'),
       // Canvases
       canvas: $('#drawable-canvas')
+    };
+
+    // Gameplay related settings
+    this.gameplay = {
+      money: 30000,
+      time: new Date(1970,01,01).getMilliseconds(),
+      project: "No project randomized..",
+      costs: {
+        coder: 5000,
+        cleaner: 2500,
+        manager: 25000,
+        cook: 3500,
+        buyFloor: 150000
+      }
     };
 
     /**
@@ -70,6 +90,14 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory'],
 		console.log("Game init..");
 
     var self = this;
+
+    // Updating DOM before waiting rest to be loaded...
+    this.ui.coderPrice.text(this.gameplay.costs.coder);
+    this.ui.cleanerPrice.text(this.gameplay.costs.cleaner);
+    this.ui.managerPrice.text(this.gameplay.costs.manager);
+    this.ui.cookPrice.text(this.gameplay.costs.cook);
+    this.ui.buyFloorPrice.text(this.gameplay.costs.buyFloor);
+    this.refreshUI();
 
     // Init tile factory... block until finished
     this.tileFactory.init(function(err) {
@@ -133,6 +161,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory'],
 	 */
 	Game.prototype.draw = function() {
 
+    this.refreshUI();
+
 	};
 
 	/**
@@ -141,7 +171,21 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory'],
 	 */
 	Game.prototype.update = function(dt) {
 
+    this.gameplay.time += 10000;
+
 	};
+
+  /**
+   * Method for updating UI element states
+   *
+   */
+  Game.prototype.refreshUI = function() {
+
+    this.ui.money.text(this.gameplay.money);
+    this.ui.time.text(moment(new Date(this.gameplay.time)).format('MMMM Do YYYY, h:mm:ss a'));
+    this.ui.project.text(this.gameplay.project);
+
+  };
 
 	Game.prototype.testGrid = function() {
 

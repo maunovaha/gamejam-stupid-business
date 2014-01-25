@@ -31,8 +31,6 @@ define(['sprite'], function(Sprite) {
 
 	};
 
-
-
 	/**
 	 *
 	 *
