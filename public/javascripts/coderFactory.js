@@ -34,6 +34,8 @@ define(['coder'], function(Coder) {
 
           // Buy it..
           this.gameplay.money -= this.gameplay.costs["coder"];
+		  var register = new Audio('audio/register.ogg');
+		  register.play();
           //this.gameplay.floors[this.gameplay.currentFloor][type]["0,0"] = entity;
 
           console.log("has room..: " + this.gameplay.money);

@@ -12,6 +12,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
 
     // If game is running
     this.isRunning = false;
+	
+	// Clicksound
+	var click = new Audio('audio/click.ogg');
 
     // Gameplay related settings
     this.gameplay = {
@@ -80,7 +83,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment'],
     $(".profession").click(function(e) {
 
       var type = $(this).attr('id');
-
+      click.play();
       self.addEntity(type);
 
     });
