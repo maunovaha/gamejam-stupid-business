@@ -16,7 +16,7 @@ define(['game'], function(Game) {
 	 */
 	App.prototype.init = function() {
 
-		var background = new Audio('audio/background.ogg'); 
+		/*var background = new Audio('audio/background.ogg'); 
 		if (typeof background.loop == 'boolean')
 		{
 			background.loop = true;
@@ -29,7 +29,7 @@ define(['game'], function(Game) {
 			}, false);
 		}
 		background.play();
-	
+	*/
 		if(document.URL.indexOf("game") !== -1) {
 			
 			var game = new Game();
