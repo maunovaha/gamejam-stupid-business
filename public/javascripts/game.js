@@ -1,4 +1,5 @@
-define(['reqanim', 'grid', 'zepto', 'entityFactory'], function(AnimationFrame, Grid, $, EntityFactory) {
+define(['reqanim', 'grid', 'zepto', 'entityFactory', 'tileFactory'],
+  function(AnimationFrame, Grid, $, EntityFactory, TileFactory) {
 
 	/**
 	 *
@@ -14,6 +15,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory'], function(AnimationFrame, G
 
     // Entity factory
     this.entityFactory = new EntityFactory();
+
+    // Tile factory
+    this.tileFactory = new TileFactory();
 
     // Ui elements
     this.ui = {
@@ -31,8 +35,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory'], function(AnimationFrame, G
       // Person area of selections
       person: $('#person'),
       // Canvases
-      foreground: $('#foreground'),
-      background: $('#background')
+      canvas: $('#drawable-canvas')
     };
 
     /**
@@ -66,53 +69,61 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory'], function(AnimationFrame, G
 
 		console.log("Game init..");
 
-		console.log("Testing Grid functionality");
+    var self = this;
 
-		this.testGrid();
+    // Init tile factory... block until finished
+    this.tileFactory.init(function(err) {
 
-    // FPS 30
-		var animFrame = new AnimationFrame(30),
+      if(err) return alert("TileFactory.js failed to load, refresh page to try again.");
 
-			// Game loop specifics
-			now = 0,
-			then = 0,
-			sub = 0,
-			dt = 0.0,
-			self = this;
+      // FPS 30
+  		var animFrame = new AnimationFrame(30),
 
-		/**
-		 * "The" loop
-		 *
-		 */
-		var loop = function() {
+  			// Game loop specifics
+  			now = 0,
+  			then = 0,
+  			sub = 0,
+  			dt = 0.0;
 
-      if(this.isRunning) {
+      // console.log("Testing Grid functionality");
 
-        // delta time (now)
-        now = Date.now();
-        sub = now - then;
-        dt = sub / 1000;
+      // self.testGrid();
 
-        // draw
-        self.draw();
+  		/**
+  		 * "The" loop
+  		 *
+  		 */
+  		var loop = function() {
 
-        // update
-        self.update(dt);
+        if(self.isRunning) {
 
-        // delta time (then)
-        then = now;
+          // delta time (now)
+          now = Date.now();
+          sub = now - then;
+          dt = sub / 1000;
 
-        // request next frame
-        animFrame.request(loop);
+          // draw
+          self.draw();
 
-      }
+          // update
+          self.update(dt);
 
-		};
+          // delta time (then)
+          then = now;
 
-		// Start the loop
-    this.isRunning = true;
+          // request next frame
+          animFrame.request(loop);
 
-		loop();
+        }
+
+  		};
+
+  		// Start the loop
+      self.isRunning = true;
+
+  		loop();
+
+    });
 
 	};
 

@@ -161,9 +161,6 @@ canvas {
   left: auto;
   top: auto;
 }
-canvas#background {
-  /*background: #000;*/
-}
 .hide {
   visibility: hidden;
 }
