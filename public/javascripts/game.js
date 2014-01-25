@@ -16,6 +16,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 	// Sounds
 	var click = new Audio('audio/click.ogg');
 	this.register = new Audio('audio/register.ogg');
+	this.notifysound = new Audio('audio/notify.ogg');
 
     // Gameplay related settings
     this.gameplay = {
@@ -86,6 +87,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
     $(".profession").click(function(e) {
 
       var type = $(this).attr('id');
+	  click.currentTime = 0;
       click.play();
       self.addEntity(type);
 
@@ -110,20 +112,26 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 
     if(result.error) {
 
-      $('#notification span').animate({
-        opacity: 0
-      }, 150, 'linear', function() {
-        $(this).text(result.error).css({ opacity: 1 });
-      })
+      this.notify(result.error)
 
       return;
 
     }
-
-  	// Entity added, play sound!
-  	this.register.play();
+	// Entity added, play sound!
+	this.register.currentTime = 0;
+	this.register.play();
 
   };
+  
+  Game.prototype.notify = function(text) {
+  $('#notification span').animate({
+        opacity: 0
+      }, 150, 'linear', function() {
+        $(this).text(text).css({ opacity: 1 });
+      })
+	this.notifysound.currentTime = 0;
+	this.notifysound.play();
+  }
 
   /**
    *
