@@ -1,5 +1,6 @@
 
-// Playing field
+
+// Creates a Cube 
 
 define(function() {
 
@@ -18,9 +19,9 @@ define(function() {
 	 */
 	Grid.prototype.init = function() {
 
-		//console.log("Grid init..");
+		console.log("Grid init..");
 		for (var i = 0; i < this.size; i++) {
-			this.board[i] = new Array( this.size);
+			this.board[i] = new Array( this.size );
 
 			for (var j= 0; j < this.size; j++) {
 				this.board[i][j] = 0;
@@ -50,7 +51,9 @@ define(function() {
 	Grid.prototype.createEntity = function( ) {
 		console.log( "alussa" );
 		console.log(this.board);
-		var not_found = 1
+		var not_found = 1;
+		var i = 0;
+		var j = 0;
 
 		if( this.boardFull() == 0) {
 			console.log("Board is full");
@@ -58,10 +61,10 @@ define(function() {
 		}
 
 		do {
-			var i = this.randomizePlace( );
-			var j = this.randomizePlace( );
-			//console.log( this.board[i][j] );
-			if( this.board[i][j] == 0) {
+			i = this.randomizePlace( );
+			j = this.randomizePlace( );
+			//console.log( i + " + " j );
+			if( this.board[i][j] == 0 ) {
 				this.board[i][j] = 1; 
 				console.log( "lisatty paikkaan (" +i +")(" + j +")");
 				return;
@@ -87,7 +90,7 @@ define(function() {
 
 	// for dev purp - prints the elements
 	Grid.prototype.printBoard = function( options ) {
-		for (var i = 0; i < 5; i++) {
+		for (var i = 0; i < this.size; i++) {
 			console.log( this.board[i] );
 
 		}		
@@ -107,11 +110,13 @@ define(function() {
 	};
 
 
+	// Random place
 	Grid.prototype.randomizePlace = function() {
 
-		var rand = Math.floor((Math.random()*this.size)+1);
+		var rand = Math.floor((Math.random()*this.size - 1)+1);
 		return rand;
 	};
+
 
 	Grid.prototype.testGrid = function( ) {
 
