@@ -21,35 +21,35 @@ block content
               tr
                 th.no-bg
                   p Project ongoing:&nbsp;
-                    span#project Phones for Microsoft
+                    span#project No project...
         table.buy-area
           tbody
             tr
-              td
+              td#coder.profession
                 p
-                  span#coder Coder &raquo; &nbsp;
+                  span Coder &raquo; &nbsp;
                   span.price 0
                   span.currency  $
-              td
+              td#cleaner.profession
                 p
-                  span#cleaner Cleaner &raquo; &nbsp;
-                  span.price 0
-                  span.currency  $
-            tr
-              td
-                p
-                  span#cook Cook &raquo; &nbsp;
-                  span.price 0
-                  span.currency  $
-              td
-                p
-                  span#manager Manager &raquo; &nbsp;
+                  span Cleaner &raquo; &nbsp;
                   span.price 0
                   span.currency  $
             tr
-              td(colspan="2")
+              td#cook.profession
                 p
-                  span#buy-floor Buy new floor to office &raquo; &nbsp;
+                  span Cook &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
+              td#manager.profession
+                p
+                  span Manager &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
+            tr
+              td(colspan="2", id="buy-floor")
+                p
+                  span Buy new floor to office &raquo; &nbsp;
                   span.price 0
                   span.currency  $
         table.person-area
@@ -64,8 +64,7 @@ block content
             tr
               td
                 p Slap
-              td.no-bg
-                p#person
+              td.no-bg#person
               td
                 p Slap
             tr

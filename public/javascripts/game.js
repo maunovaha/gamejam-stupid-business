@@ -1,10 +1,54 @@
-define(['reqanim', 'grid'], function(AnimationFrame, Grid) {
+define(['reqanim', 'grid', 'zepto'], function(AnimationFrame, Grid, $) {
 
 	/**
 	 *
 	 *
 	 */
-	var Game = function() {};
+	var Game = function() {
+
+    // If game is running
+    this.isRunning = false;
+
+    // Ui elements
+    this.ui = {
+      // Overall
+      money: $('#money'),
+      time: $('#time p'),
+      project: $('#project'),
+      // Persons
+      coder: $('#coder'),
+      cleaner: $('#cleaner'),
+      manager: $('#manager'),
+      cook: $('#cook'),
+      // Floor
+      buyFloor: $('#buy-floor'),
+      // Person area of selections
+      person: $('#person'),
+      // Canvases
+      foreground: $('#foreground'),
+      background: $('#background')
+    };
+
+    /**
+     * Binding click events
+     *
+     */
+
+    // Professions..
+    $(".profession").click(function(e) {
+
+      alert($(this).attr("id") + " clicked..");
+
+    });
+
+    // New floor..
+    this.ui.buyFloor.click(function(e) {
+
+      alert("Buy new floor..");
+
+    });
+
+  };
 
 	/**
 	 *
@@ -18,10 +62,8 @@ define(['reqanim', 'grid'], function(AnimationFrame, Grid) {
 
 		this.testGrid();
 
-		var isRunning = true,
-
-			// FPS 30
-			animFrame = new AnimationFrame(30),
+    // FPS 30
+		var animFrame = new AnimationFrame(30),
 
 			// Game loop specifics
 			now = 0,
@@ -56,6 +98,8 @@ define(['reqanim', 'grid'], function(AnimationFrame, Grid) {
 		};
 
 		// Start the loop
+    this.isRunning = true;
+
 		loop();
 
 	};
