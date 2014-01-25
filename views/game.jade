@@ -4,8 +4,10 @@ block content
   .ui-wrapper
     .ui-header
       .cash
-        p 1 000 000 €
-      .time
+        p
+          span#money 0
+          span.currency  $
+      #time
         p 1.1.1970 00:00
     .ui-content
       .left
@@ -16,28 +18,41 @@ block content
       .right
         table.status-area
           thead
-          tbody
               tr
-                td
-                  p Project ongoing: Phones for Microsoft
+                th.no-bg
+                  p Project ongoing:&nbsp;
+                    span#project Phones for Microsoft
         table.buy-area
-          thead
           tbody
             tr
               td
-                p 5000 € / Coder
+                p
+                  span#coder Coder &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
               td
-                p Cleaner
+                p
+                  span#cleaner Cleaner &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
             tr
               td
-                p Manager
+                p
+                  span#cook Cook &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
               td
-                p Chef
+                p
+                  span#manager Manager &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
             tr
               td(colspan="2")
-                p Buy ladder
+                p
+                  span#buy-floor Buy new floor to office &raquo; &nbsp;
+                  span.price 0
+                  span.currency  $
         table.person-area
-          thead
           tbody
             tr
               td
@@ -49,8 +64,8 @@ block content
             tr
               td
                 p Slap
-              td
-                p image
+              td.no-bg
+                p#person
               td
                 p Slap
             tr
