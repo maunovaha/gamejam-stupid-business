@@ -4,7 +4,8 @@ require.config({
         jquery:         'lib/jquery',
         zepto:          'lib/zepto',
         deferred: 	  	'lib/deferred',
-        reqanim:        'lib/req-anim'
+        reqanim:        'lib/req-anim',
+        moment:         'lib/moment'
     },
     map: {
         '*': {
@@ -18,14 +19,14 @@ require.config({
     	// The shim config allows us to configure dependencies for
   		// scripts that do not call define() to register a module
     	deferred: {
-            exports: 'Deferred'
-        },
-        zepto: {
-            exports: 'Zepto'
-        },
-        reqanim: {
-            exports: 'AnimationFrame'
-        }
+          exports: 'Deferred'
+      },
+      zepto: {
+          exports: 'Zepto'
+      },
+      reqanim: {
+          exports: 'AnimationFrame'
+      }
     }
 });
 
