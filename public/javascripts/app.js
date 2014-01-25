@@ -16,6 +16,14 @@ define(['game'], function(Game) {
 	 */
 	App.prototype.init = function() {
 
+	var backgroundmusic = new Audio("audio/background.mp3");
+	
+	backgroundmusic.addEventListener('ended', function() {
+		this.currentTime = 0;
+		this.play();
+	}, false);
+	backgroundmusic.play();
+	
 		if(document.URL.indexOf("game") !== -1) {
 
 			var game = new Game();
