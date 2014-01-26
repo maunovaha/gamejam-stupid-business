@@ -399,7 +399,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     // Update all entities
 	this.canvas.update();
 
-	// PLAYING KEYBOARD SOUNDS
+	// PLAYING KEYBOARD SOUNDS & UPDATING MONEY + PROGRESS
 	for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
 
 	      if(type === "coder") {
@@ -439,7 +439,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
 		}
 	};
-	// DONE PLAYING KEYBOARD SOUNDS
+	// DONE PLAYING KEYBOARD SOUNDS & UPDATING MONEY + PROGRESS
 
   /**
    * Method for updating UI element states
