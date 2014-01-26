@@ -354,7 +354,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
     this.gameplay.time += 10000;
 
 
-
+	//RELATED TO KEYBOARDSOUNDS
 	if (this.playKeyboardsound>0) {
 	console.log("play keyboardsound");
 		if (typeof this.keyboardsound.loop == 'boolean')
@@ -373,15 +373,20 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 	console.log("don't play keyboardsound");
 		this.keyboardsound.pause();
 	}
+	// NO LONGER AT THIS POINT RELATED TO KEYBOARD SOUNDS
 
     // Update all entities
 	this.canvas.update();
+	
+	// PLAYING KEYBOARD SOUNDS
 	for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
 
 	      if(type === "coder") {
+		  
+			
 
 	        for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
-
+			
 	          if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
 				this.playKeyboardsound = 1;
 				break;
@@ -390,13 +395,21 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 			  }
 
 	      }
-
+		   for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
+				if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
+					this.gameplay.money += 5;
+				}
+			}
+		  if (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length>0){
+			this.gameplay.money -= (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length)*3;
+		  }
 	      break;
 
 	    }
 
 		}
 	};
+	// DONE PLAYING KEYBOARD SOUNDS
 
   /**
    * Method for updating UI element states
