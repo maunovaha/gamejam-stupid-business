@@ -496,6 +496,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 	this.canvas.update();
 	
 	this.gameplay.money -= 1;
+	if (this.gameplay.money<this.gameplay.losecondition) {
+				this.isRunning = false;
+				alert("YOU LOSE! YOU'RE A FAILURE EVEN IN THIS STUPID BUSINESS!");
+			}
 
 	// PLAYING KEYBOARD SOUNDS & UPDATING MONEY + PROGRESS
 	for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
@@ -526,10 +530,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 			}
 		  if (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length>0){
 			this.gameplay.money -= (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length)*5;
-			if (this.gameplay.money<this.gameplay.losecondition) {
-				this.isRunning = false;
-				alert("YOU LOSE! YOU'RE A FAILURE EVEN IN THIS STUPID BUSINESS!");
-			}
+			
 		  }
 	      break;
 
