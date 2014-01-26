@@ -18,7 +18,8 @@ define(['entity'], function(Entity) {
 			normal: true,
 			sleeping: false,
 			hungry: false,
-			toilet: false
+			toilet: false,
+			talking: false
 			};
 
 	};
@@ -59,6 +60,12 @@ define(['entity'], function(Entity) {
 						this.states.toilet = true;
 						this.states.normal= false;
 						console.log("Toilet");
+						break;
+					}
+					case 2: {
+						this.states.talking = true;
+						this.states.normal= false;
+						console.log("Talking");
 						break;
 					}
 					default: {
