@@ -39,7 +39,17 @@ define(['entity'], function(Entity) {
 
   Coder.prototype.slap = function() {
 
-    this.stateCurrent = "normal";
+    if(this.stateCurrent === "sleeping") {
+      this.stateCurrent = "normal";
+    }
+
+  };
+
+  Coder.prototype.feed = function() {
+
+    if(this.stateCurrent === "hungry") {
+      this.stateCurrent = "normal";
+    }
 
   };
 

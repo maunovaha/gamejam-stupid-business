@@ -14,7 +14,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     this.isRunning = false;
 
   	// Sounds
-  	var click = new Audio('audio/click.ogg');
+  	this.clicksound = new Audio('audio/click.ogg');
   	this.register = new Audio('audio/register.ogg');
   	this.notifysound = new Audio('audio/notify.ogg');
   	this.slapsound = new Audio('audio/Slap.ogg');
@@ -99,8 +99,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     $(".profession").click(function(e) {
 
       var type = $(this).attr('id');
-	    click.currentTime = 0;
-      click.play();
+	    self.clicksound.currentTime = 0;
+      self.clicksound.play();
       self.addEntity(type);
 
     });
@@ -134,10 +134,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
   };
 
-  Game.prototype.setRandomProject = function() {
-
-  };
-
   Game.prototype.actionClick = function(type) {
 
     if(this.gameplay.selectedEntity != null) {
@@ -145,11 +141,23 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
       if(type === "slap") {
 
         this.gameplay.selectedEntity.slap();
-        this.slapsound.currentTime = 0;
-        this.slapsound.play();
+
+        if(this.gameplay.selectedEntity.stateCurrent === "normal") {
+          this.slapsound.currentTime = 0;
+          this.slapsound.play();
+        } else {
+          this.clicksound.currentTime = 0;
+          this.clicksound.play();
+        }
+
+      } else if(type === "feed") {
+
+        this.gameplay.selectedEntity.feed();
+
+        this.clicksound.currentTime = 0;
+        this.clicksound.play();
 
       }
-
 
       return;
 
