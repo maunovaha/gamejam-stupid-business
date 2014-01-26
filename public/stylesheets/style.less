@@ -162,12 +162,17 @@ body {
   font: 14px "Lucida Grande", sans-serif, Arial, Helvetica;
 }
 
-canvas {
+canvas, #start-screen {
   width: 640px;
   height: 480px;
   position: absolute;
   left: auto;
   top: auto;
+}
+
+#start-screen {
+  background-image: url("/images/start-bg.png");
+  background-repeat: no-repeat;
 }
 
 canvas#drawable-canvas {
@@ -328,6 +333,10 @@ canvas#drawable-canvas {
 
 .gray {
   color: #747474;
+}
+
+.visiblee {
+  display: block;
 }
 
 

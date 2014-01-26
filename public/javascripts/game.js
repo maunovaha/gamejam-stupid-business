@@ -86,6 +86,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
       buyFloorPrice: $('#buy-floor').find('.price'),
       // Person area of selections
       personArea: $('.person-area'),
+      // Screens
+      startScreen: $('#start-screen'),
       // Buttons
       slap: $('#slap'),
       toilet: $('#toilet'),
@@ -96,7 +98,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
      * Binding click events
      *
      */
-
     // Professions..
     $(".profession").click(function(e) {
 
@@ -139,6 +140,13 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
     // Click canvas
     this.ui.canvas.click(function(e) {
+
+      if(self.isRunning === false) {
+
+        self.ui.startScreen.hide();
+        self.isRunning = true;
+
+      }
 
       if(self.isRunning) {
 
@@ -433,15 +441,12 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
           // delta time (then)
           then = now;
 
-          // request next frame
-          animFrame.request(loop);
-
         }
 
-  		};
+        // request next frame
+        animFrame.request(loop);
 
-  		// Start the loop
-      self.isRunning = true;
+  		};
 
   		loop();
 
