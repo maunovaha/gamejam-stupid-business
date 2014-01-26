@@ -7,7 +7,7 @@ define(['entity'], function(Entity) {
 	var Manager = function(options) {
 		Entity.call(this, options);
 
-		console.log("Manager created...");
+		//console.log("Manager created...");
 
 		// position from left & top
 		this.left = 0;

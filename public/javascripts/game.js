@@ -26,6 +26,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
     // Gameplay related settings
     this.gameplay = {
+      reallyLOSTED: false,
       money: 30000,
 	  losecondition: -10000,
 	  progress: 0,
@@ -141,7 +142,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     // Click canvas
     this.ui.canvas.click(function(e) {
 
-      if(self.isRunning === false) {
+      if(self.isRunning === false && self.gameplay.reallyLOSTED === false) {
 
         self.ui.startScreen.hide();
         self.isRunning = true;
@@ -389,8 +390,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 	 */
 	Game.prototype.init = function() {
 
-		console.log("Game init..");
-
     var self = this;
 
     // Updating DOM before waiting rest to be loaded...
@@ -498,6 +497,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 	this.gameplay.money -= 1;
 	if (this.gameplay.money<this.gameplay.losecondition) {
 				this.isRunning = false;
+        this.gameplay.reallyLOSTED = true;
 				this.notify("YOU LOSE! YOU'RE A FAILURE EVEN IN THIS STUPID BUSINESS!");
 			}
 

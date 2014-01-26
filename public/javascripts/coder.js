@@ -7,7 +7,7 @@ define(['entity'], function(Entity) {
 	var Coder = function(options) {
 		Entity.call(this, options);
 
-		console.log("Coder created...");
+		//console.log("Coder created...");
 
 		// position from left & top
 		this.left = 256;
@@ -71,7 +71,7 @@ define(['entity'], function(Entity) {
     if(this.stateCurrent !== "walking") {
 
       this.stateCurrent = "meeting";
-      console.log("setting to meeting!");
+      //console.log("setting to meeting!");
       this.pathForward = true;
 
       var spotNow = this.paths["meeting"][this.pathCurrent];
@@ -132,22 +132,22 @@ define(['entity'], function(Entity) {
 				switch (x) {
 					case 0: {
 						this.stateCurrent = "hungry";
-						console.log("Hungry");
+						//console.log("Hungry");
 						break;
 					}
 					case 1: {
 						this.stateCurrent = "toilet";
-						console.log("Toilet");
+						//console.log("Toilet");
 						break;
 					}
 					case 2: {
 						this.stateCurrent = "talking";
-						console.log("Talking");
+						//console.log("Talking");
 						break;
 					}
 					default: {
 						this.stateCurrent = "sleeping";
-						console.log("Sleeping");
+						//console.log("Sleeping");
 						break;
 					}
 				}

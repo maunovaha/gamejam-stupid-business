@@ -6,7 +6,7 @@ define(function() {
 	 */
 	var ProjectFactory = function() {
 
-		console.log("ProjectFactory created...");
+		//console.log("ProjectFactory created...");
 
 		this.companies = [
 			"Crand Grew",
@@ -70,7 +70,7 @@ define(function() {
 			"FATKING",
 			"Failing with girls"
 		];
-		
+
 	};
 
 	/**

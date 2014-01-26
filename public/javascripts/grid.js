@@ -6,7 +6,7 @@ define(function() {
 
 	var Grid = function( options ) {
 
-		console.log( options );
+		//console.log( options );
 
 		this.reserved = 0;
 		this.size = options.size;
@@ -19,7 +19,7 @@ define(function() {
 	 */
 	Grid.prototype.init = function() {
 
-		console.log("Grid init..");
+		//console.log("Grid init..");
 		for (var i = 0; i < this.size; i++) {
 			this.board[i] = new Array( this.size );
 
@@ -33,8 +33,8 @@ define(function() {
 
 	// add the entity to the first free place
 	Grid.prototype.addEntity = function( ) {
-		console.log( "alussa" );
-		console.log(this.board);
+		//console.log( "alussa" );
+		//console.log(this.board);
 		for (var i = 0; i < this.size; i++) {
 			for (var j = 0; j < this.size; j++) {
 				//console.log( this.board[i][j] );
@@ -49,14 +49,14 @@ define(function() {
 
 	// add the entity to the random place
 	Grid.prototype.createEntity = function( ) {
-		console.log( "alussa" );
-		console.log(this.board);
+		//console.log( "alussa" );
+		//console.log(this.board);
 		var not_found = 1;
 		var i = 0;
 		var j = 0;
 
 		if( this.boardFull() == 0) {
-			console.log("Board is full");
+			//console.log("Board is full");
 			return;
 		}
 
@@ -66,7 +66,7 @@ define(function() {
 			//console.log( i + " + " j );
 			if( this.board[i][j] == 0 ) {
 				this.board[i][j] = 1;
-				console.log( "lisatty paikkaan (" +i +")(" + j +")");
+				//console.log( "lisatty paikkaan (" +i +")(" + j +")");
 				return;
 			}
 
@@ -81,7 +81,7 @@ define(function() {
 			for (var j= this.size - 1; j >= 0; j--) {
 				if( this.board[i][j] == 1)
 				{
-					console.log( "poistetaan");
+					//console.log( "poistetaan");
 					this.board[i][j] = 0;
 				}
 			}
@@ -91,7 +91,7 @@ define(function() {
 	// for dev purp - prints the elements
 	Grid.prototype.printBoard = function( options ) {
 		for (var i = 0; i < this.size; i++) {
-			console.log( this.board[i] );
+			//console.log( this.board[i] );
 
 		}
 	};

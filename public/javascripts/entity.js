@@ -6,7 +6,7 @@ define(function() {
 	 */
 	var Entity = function(options) {
 
-		console.log("Entity created...");
+		//console.log("Entity created...");
 
 		this.type = options.type;
 	    this.x = options.x;

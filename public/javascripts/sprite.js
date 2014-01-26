@@ -6,7 +6,7 @@ define(function() {
 	 */
 	var Sprite = function(options) {
 
-		console.log("Sprite created...");
+		//console.log("Sprite created...");
 
 		this.type = options.type;
 	  this.x = options.x;

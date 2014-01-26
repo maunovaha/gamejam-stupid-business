@@ -2,8 +2,6 @@ define(['zepto'], function($) {
 
 	var Canvas = function(gameplay) {
 
-		console.log("Canvas..");
-
 		this.gameplay = gameplay;
 		this.dom = $('#drawable-canvas');
 		this.ctx = this.dom[0].getContext('2d');
