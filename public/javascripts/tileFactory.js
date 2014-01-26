@@ -18,7 +18,11 @@ define(['sprite'], function(Sprite) {
 				coder: {
 					x: 0,
 					y: 0
-				}
+				},
+        manager: {
+          x: 0,
+          y: 1
+        }
 			},
 			standing: {
 			}

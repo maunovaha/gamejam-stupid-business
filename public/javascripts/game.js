@@ -26,7 +26,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
     // Gameplay related settings
     this.gameplay = {
-      money: 30000,
+      money: 3000000,
 	  losecondition: -20000,
 	  progress: 0,
       time: new Date(1970,01,01).getMilliseconds(),
@@ -188,22 +188,38 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
    */
   Game.prototype.onClick = function(x, y) {
 
+    var isFound = false;
+
     for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
 
       if(type === "coder") {
 
         // Converting to possible coder coordinates...
-        x -= 4;
+        var person = this.gameplay.floors[this.gameplay.currentFloor][type][(x-4) + "," + y];
 
-        var person = this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y];
+        if(typeof person !== "undefined" && person.stateCurrent !== "walking") {
+          this.selectEntity(this.gameplay.floors[this.gameplay.currentFloor][type][(x-4) + "," + y]);
+          isFound = true;
+          break;
+        }
 
-        if(typeof person !== "undefined" && person.stateCurrent !== "walking")
-          this.selectEntity(this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y]);
-        else
-          this.clearSelections();
+      } else if(type === "manager") {
+
+        // Converting to possible manager coordinates...
+        var manager = this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + (y-9)];
+
+        if(typeof manager !== "undefined") {
+          this.selectEntity(this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + (y-9)]);
+          isFound = true;
+          break;
+        }
 
       }
 
+    }
+
+    if(isFound === false) {
+      this.clearSelections();
     }
 
   };
@@ -227,9 +243,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     this.clearSelections();
 
     // Show correct view...
-    $('#person-' + entity.type).find('.person img').attr("src", "/images/" + entity.stateCurrent + ".png");
-    $('#person-' + entity.type).removeClass('hidden');
+    if(entity.type === "coder") {
+      $('#person-' + entity.type).find('.person img').attr("src", "/images/" + entity.stateCurrent + ".png");
+    }
 
+    $('#person-' + entity.type).removeClass('hidden');
     this.gameplay.selectedEntity = entity;
 
   };
@@ -238,12 +256,14 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
    * Called when UI selections needs to be toggled away.. (e.g. floor change)
    *
    */
-  Game.prototype.clearSelections = function(entity) {
+  Game.prototype.clearSelections = function() {
 
     // Setting UI to default hidden state
     this.ui.personArea.addClass("hidden");
-    $('.person img').attr("src", "/images/normal.png");
-    // todo add manager image..
+
+    if(this.gameplay.selectedEntity != null && this.gameplay.selectedEntity.type === "coder") {
+      $('#person-coder').find('.person img').attr("src", "/images/normal.png");
+    }
 
     this.gameplay.selectedEntity = null;
 
@@ -264,9 +284,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
       return;
 
     }
-	// Entity added, play sound!
-	this.register.currentTime = 0;
-	this.register.play();
+
+  	// Entity added, play sound!
+  	this.register.currentTime = 0;
+  	this.register.play();
 
   };
 

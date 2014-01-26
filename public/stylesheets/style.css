@@ -293,8 +293,13 @@ canvas {
   width: 33.3333%;
 }
 .ui-content .right .person-area .person {
-  background-color: #c0ff33;
   text-align: center;
+}
+.ui-content .right .person-area .person-coder-img {
+  background-color: #87c12e;
+}
+.ui-content .right .person-area .person-manager-img {
+  background-color: #b6334c;
 }
 .ui-content .right .hidden {
   display: none;
