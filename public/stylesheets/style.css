@@ -278,9 +278,11 @@ canvas {
   background-image: none;
   border: none;
 }
-.ui-content .right .status-area,
 .ui-content .right .buy-area {
   margin-bottom: 10px;
+}
+.ui-content .right .status-area {
+  margin-bottom: 6px;
 }
 .ui-content .right .status-area p {
   text-align: center;
@@ -291,9 +293,24 @@ canvas {
   width: 33.3333%;
 }
 .ui-content .right .person-area .person {
-  background-color: #c0ff33;
   text-align: center;
+}
+.ui-content .right .person-area .person-coder-img {
+  background-color: #87c12e;
+}
+.ui-content .right .person-area .person-manager-img {
+  background-color: #b6334c;
 }
 .ui-content .right .hidden {
   display: none;
+}
+.no-margin-bottom {
+  margin-bottom: 4px;
+}
+.no-margin-top {
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+.gray {
+  color: #747474;
 }

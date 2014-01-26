@@ -22,8 +22,8 @@ block content
           thead
               tr
                 th.no-bg
-                  p &laquo; Project &raquo;
-                  p
+                  p.no-margin-bottom &laquo; Project &raquo;
+                  p.no-margin-top
                     span#project
         table.buy-area
           tbody
@@ -33,13 +33,13 @@ block content
                   span Coder &raquo; &nbsp;
                   span.price 0
                   span.currency  $
-              td#cleaner.profession
+              td#cleaner.profession.gray
                 p
                   span Cleaner &raquo; &nbsp;
                   span.price 0
                   span.currency  $
             tr
-              td#cook.profession
+              td#cook.profession.gray
                 p
                   span Cook &raquo; &nbsp;
                   span.price 0
@@ -55,7 +55,7 @@ block content
                   span Buy new floor to office &raquo; &nbsp;
                   span.price 0
                   span.currency  $
-        table.person-area#person-coder.hidden
+        table#person-coder.person-area.hidden
           tbody
             tr
               td#slap.action
@@ -67,7 +67,7 @@ block content
             tr
               td.no-bg
                 p &nbsp;
-              td.no-bg.person
+              td.no-bg.person.person-coder-img
                 img(src="images/normal.png")
               td.no-bg
                 p &nbsp;
@@ -78,10 +78,10 @@ block content
                 p &nbsp;
               td.no-bg
                 p &nbsp;
-        table.person-area#person-manager.hidden
+        table#person-manager.person-area.hidden
           tbody
             tr
-              td
+              td#meet.action
                 p Hold a Meeting
               td.no-bg
                 p &nbsp;
@@ -90,8 +90,8 @@ block content
             tr
               td.no-bg
                 p &nbsp;
-              td.no-bg.person
-                img(src="images/normal.png")
+              td.no-bg.person.person-manager-img
+                img(src="images/manager.png")
               td.no-bg
                 p &nbsp;
             tr

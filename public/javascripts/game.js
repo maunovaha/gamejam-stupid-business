@@ -27,7 +27,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     // Gameplay related settings
     this.gameplay = {
       money: 30000,
-	  losecondition: -50000,
+	  losecondition: -10000,
 	  progress: 0,
       time: new Date(1970,01,01).getMilliseconds(),
       project: this.projectFactory.getProject(),
@@ -100,19 +100,32 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     // Professions..
     $(".profession").click(function(e) {
 
-      var type = $(this).attr('id');
-	    self.clicksound.currentTime = 0;
-      self.clicksound.play();
-      self.addEntity(type);
+      if(self.isRunning) {
+
+        var type = $(this).attr('id');
+
+        if(type !== "cook" || type !== "cleaner") {
+
+           self.clicksound.currentTime = 0;
+          self.clicksound.play();
+          self.addEntity(type);
+
+        }
+
+      }
 
     });
 
     // Buttons..
     $(".action").click(function(e) {
 
-      var type = $(this).attr('id');
+      if(self.isRunning) {
 
-      self.actionClick(type);
+        var type = $(this).attr('id');
+
+        self.actionClick(type);
+
+      }
 
     });
 
@@ -120,17 +133,21 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     // New floor..
     this.ui.buyFloor.click(function(e) {
 
-      alert("Buy new floor..");
+      alert("Get early access from steam... seriously, gamejams?");
 
     });
 
     // Click canvas
     this.ui.canvas.click(function(e) {
 
-      var x = Math.floor((e.pageX-$(this).offset().left) / 64),
-          y = Math.floor((e.pageY-$(this).offset().top) / 48);
+      if(self.isRunning) {
 
-      self.onClick(x, y);
+        var x = Math.floor((e.pageX-$(this).offset().left) / 64),
+            y = Math.floor((e.pageY-$(this).offset().top) / 48);
+
+        self.onClick(x, y);
+
+      }
 
     });
 
@@ -161,9 +178,61 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
         this.clicksound.currentTime = 0;
         this.clicksound.play();
 
+      } else if(type === "toilet") {
+
+        this.gameplay.selectedEntity.toilet();
+
+        this.clicksound.currentTime = 0;
+        this.clicksound.play();
+
+      } else if(type === "meet") {
+
+        // we select maximum of 5 people for meeting...
+        var selections = [];
+
+        // if at least one need meeting..
+        for(var key in this.gameplay.floors[this.gameplay.currentFloor]["coder"]) {
+
+          if(this.gameplay.floors[this.gameplay.currentFloor]["coder"][key].stateCurrent === "talking") {
+
+            selections.push(this.gameplay.floors[this.gameplay.currentFloor]["coder"][key].x + "," + this.gameplay.floors[this.gameplay.currentFloor]["coder"][key].y);
+
+          }
+
+        }
+
+        if(selections.length > 0) {
+
+          if(this.gameplay.selectedEntity.meetings === 0) {
+            this.notify("Manager says: My calendar is full for the rest of the year, no more meetings!");
+          } else {
+
+            this.gameplay.selectedEntity.meet();
+
+            for(var yy = 0; yy < selections.length; yy++) {
+
+              this.gameplay.floors[this.gameplay.currentFloor]["coder"][selections[yy]].meet();
+
+            }
+
+          }
+
+        }
+
+        this.clicksound.currentTime = 0;
+        this.clicksound.play();
+
       }
 
       if(beforeState !== this.gameplay.selectedEntity.stateCurrent) {
+
+         // if meeting started...
+         if(this.gameplay.selectedEntity.type === "manager") {
+
+          this.notify("Manager says: EVERYBODY, lets have a meeting, im lonely.");
+
+         }
+
          this.clearSelections();
       }
 
@@ -181,20 +250,38 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
    */
   Game.prototype.onClick = function(x, y) {
 
+    var isFound = false;
+
     for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
 
       if(type === "coder") {
 
         // Converting to possible coder coordinates...
-        x -= 4;
+        var person = this.gameplay.floors[this.gameplay.currentFloor][type][(x-4) + "," + y];
 
-        if(typeof this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y] !== "undefined")
-          this.selectEntity(this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y]);
-        else
-          this.clearSelections();
+        if(typeof person !== "undefined" && person.stateCurrent !== "walking") {
+          this.selectEntity(this.gameplay.floors[this.gameplay.currentFloor][type][(x-4) + "," + y]);
+          isFound = true;
+          break;
+        }
+
+      } else if(type === "manager") {
+
+        // Converting to possible manager coordinates...
+        var manager = this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + (y-9)];
+
+        if(typeof manager !== "undefined") {
+          this.selectEntity(this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + (y-9)]);
+          isFound = true;
+          break;
+        }
 
       }
 
+    }
+
+    if(isFound === false) {
+      this.clearSelections();
     }
 
   };
@@ -218,9 +305,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     this.clearSelections();
 
     // Show correct view...
-    $('#person-' + entity.type).find('.person img').attr("src", "/images/" + entity.stateCurrent + ".png");
-    $('#person-' + entity.type).removeClass('hidden');
+    if(entity.type === "coder") {
+      $('#person-' + entity.type).find('.person img').attr("src", "/images/" + entity.stateCurrent + ".png");
+    }
 
+    $('#person-' + entity.type).removeClass('hidden');
     this.gameplay.selectedEntity = entity;
 
   };
@@ -229,12 +318,14 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
    * Called when UI selections needs to be toggled away.. (e.g. floor change)
    *
    */
-  Game.prototype.clearSelections = function(entity) {
+  Game.prototype.clearSelections = function() {
 
     // Setting UI to default hidden state
     this.ui.personArea.addClass("hidden");
-    $('.person img').attr("src", "/images/normal.png");
-    // todo add manager image..
+
+    if(this.gameplay.selectedEntity != null && this.gameplay.selectedEntity.type === "coder") {
+      $('#person-coder').find('.person img').attr("src", "/images/normal.png");
+    }
 
     this.gameplay.selectedEntity = null;
 
@@ -255,9 +346,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
       return;
 
     }
-	// Entity added, play sound!
-	this.register.currentTime = 0;
-	this.register.play();
+
+  	// Entity added, play sound!
+  	this.register.currentTime = 0;
+  	this.register.play();
 
   };
 
@@ -375,7 +467,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 	Game.prototype.update = function(dt) {
 
     this.gameplay.time += 10000;
-
 
 	//RELATED TO KEYBOARDSOUNDS
 	if (this.playKeyboardsound>0) {

@@ -1,4 +1,4 @@
-define(['tileFactory', 'coderFactory'], function(TileFactory, CoderFactory) {
+define(['tileFactory', 'coderFactory', 'managerFactory'], function(TileFactory, CoderFactory, ManagerFactory) {
 
 	/**
 	 *
@@ -13,7 +13,7 @@ define(['tileFactory', 'coderFactory'], function(TileFactory, CoderFactory) {
 		this.factories = {
 			coder: new CoderFactory(gameplay, this.tileFactory),
 			cleaner: null,
-			manager: null,
+			manager: new ManagerFactory(gameplay, this.tileFactory),
 			cook: null,
       tileFactory: this.tileFactory
 		};

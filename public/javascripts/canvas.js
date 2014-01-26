@@ -24,21 +24,13 @@ define(['zepto'], function($) {
 		// Clearing it all
 		this.clear();
 
-		// Draw all entities
+		// Draw all entities (current floor only)
 	    for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
+	      for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
 
-	      if(type === "coder") {
-
-	        for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
-
-	          this.gameplay.floors[this.gameplay.currentFloor][type][key].draw(this.ctx);
-
-	        }
+	         this.gameplay.floors[this.gameplay.currentFloor][type][key].draw(this.ctx);
 
 	      }
-
-	      break;
-
 	    }
 
 	};
@@ -48,17 +40,13 @@ define(['zepto'], function($) {
 		// Update all entities
 	    for(var floor in this.gameplay.floors) {
         for(var type in this.gameplay.floors[floor]) {
-          if(type === "coder") {
+          for(var key in this.gameplay.floors[floor][type]) {
 
-            for(var key in this.gameplay.floors[floor][type]) {
-
+            if(typeof this.gameplay.floors[this.gameplay.currentFloor][type][key] !== "undefined") {
               this.gameplay.floors[this.gameplay.currentFloor][type][key].update();
-
             }
 
           }
-
-          break;
         }
 	    }
 	};
