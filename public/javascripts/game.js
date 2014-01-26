@@ -27,7 +27,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     // Gameplay related settings
     this.gameplay = {
       money: 30000,
-	  losecondition: -50000,
+	  losecondition: -20000,
 	  progress: 0,
       time: new Date(1970,01,01).getMilliseconds(),
       project: this.projectFactory.getProject(),
@@ -161,6 +161,13 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
         this.clicksound.currentTime = 0;
         this.clicksound.play();
 
+      } else if(type === "toilet") {
+
+        this.gameplay.selectedEntity.toilet();
+
+        this.clicksound.currentTime = 0;
+        this.clicksound.play();
+
       }
 
       if(beforeState !== this.gameplay.selectedEntity.stateCurrent) {
@@ -188,7 +195,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
         // Converting to possible coder coordinates...
         x -= 4;
 
-        if(typeof this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y] !== "undefined")
+        var person = this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y];
+
+        if(typeof person !== "undefined" && person.stateCurrent !== "walking")
           this.selectEntity(this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y]);
         else
           this.clearSelections();
@@ -375,7 +384,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 	Game.prototype.update = function(dt) {
 
     this.gameplay.time += 10000;
-
 
 	//RELATED TO KEYBOARDSOUNDS
 	if (this.playKeyboardsound>0) {

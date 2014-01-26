@@ -278,9 +278,11 @@ canvas {
   background-image: none;
   border: none;
 }
-.ui-content .right .status-area,
 .ui-content .right .buy-area {
   margin-bottom: 10px;
+}
+.ui-content .right .status-area {
+  margin-bottom: 6px;
 }
 .ui-content .right .status-area p {
   text-align: center;
@@ -296,4 +298,11 @@ canvas {
 }
 .ui-content .right .hidden {
   display: none;
+}
+.no-margin-bottom {
+  margin-bottom: 4px;
+}
+.no-margin-top {
+  margin-top: 0px;
+  margin-bottom: 8px;
 }
