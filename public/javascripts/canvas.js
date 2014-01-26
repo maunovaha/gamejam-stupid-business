@@ -11,8 +11,6 @@ define(['zepto'], function($) {
 		this.width = 640;
 		this.height = 480;
 
-		console.log(this.ctx);
-
 	};
 
 	Canvas.prototype.clear = function() {

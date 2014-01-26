@@ -33,6 +33,16 @@ define(['entity'], function(Entity) {
 
 	};
 
+	/**
+	 *
+	 *
+	 */
+	Coder.prototype.onClick = function(x, y) {
+
+		console.log("Coder x: " + x + " y: " + y);
+
+	};
+
 	return Coder;
 
 });

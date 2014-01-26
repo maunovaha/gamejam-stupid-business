@@ -13,10 +13,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
     // If game is running
     this.isRunning = false;
 
-	// Sounds
-	var click = new Audio('audio/click.ogg');
-	this.register = new Audio('audio/register.ogg');
-	this.notifysound = new Audio('audio/notify.ogg');
+  	// Sounds
+  	var click = new Audio('audio/click.ogg');
+  	this.register = new Audio('audio/register.ogg');
+  	this.notifysound = new Audio('audio/notify.ogg');
 
     // Gameplay related settings
     this.gameplay = {
@@ -44,8 +44,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
         }
       },
       // floor player is viewing
-      currentFloor: 1,
-      maxCoders: 36
+      currentFloor: 1
     };
 
     // Entity factory
@@ -68,6 +67,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
       cook: $('#cook'),
       // Floor
       buyFloor: $('#buy-floor'),
+      // Canvas
+      canvas: $('#drawable-canvas'),
       // Prices
       coderPrice: $('#coder').find('.price'),
       cleanerPrice: $('#cleaner').find('.price'),
@@ -87,7 +88,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
     $(".profession").click(function(e) {
 
       var type = $(this).attr('id');
-	  click.currentTime = 0;
+	    click.currentTime = 0;
       click.play();
       self.addEntity(type);
 
@@ -99,6 +100,38 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
       alert("Buy new floor..");
 
     });
+
+    // Click canvas
+    this.ui.canvas.click(function(e) {
+
+      var x = Math.floor((e.pageX-$(this).offset().left) / 64),
+          y = Math.floor((e.pageY-$(this).offset().top) / 48);
+
+      self.onClick(x, y);
+
+    });
+
+  };
+
+  /**
+   * On canvas click...
+   *
+   */
+  Game.prototype.onClick = function(x, y) {
+
+    for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
+
+      if(type === "coder") {
+
+        // Converting to possible coder coordinates...
+        x -= 4;
+
+        if(typeof this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y] !== "undefined")
+          this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y].onClick(x, y);
+
+      }
+
+    }
 
   };
 
@@ -112,7 +145,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 
     if(result.error) {
 
-      this.notify(result.error)
+      this.notify(result.error);
 
       return;
 
@@ -122,16 +155,20 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 	this.register.play();
 
   };
-  
+
+  /**
+   *
+   *
+   */
   Game.prototype.notify = function(text) {
-  $('#notification span').animate({
-        opacity: 0
-      }, 150, 'linear', function() {
-        $(this).text(text).css({ opacity: 1 });
-      })
-	this.notifysound.currentTime = 0;
-	this.notifysound.play();
-  }
+    $('#notification span').animate({
+          opacity: 0
+        }, 150, 'linear', function() {
+          $(this).text(text).css({ opacity: 1 });
+    });
+  	this.notifysound.currentTime = 0;
+  	this.notifysound.play();
+  };
 
   /**
    *
