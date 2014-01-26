@@ -140,11 +140,13 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
     if(this.gameplay.selectedEntity != null) {
 
+      var beforeState = this.gameplay.selectedEntity.stateCurrent;
+
       if(type === "slap") {
 
         this.gameplay.selectedEntity.slap();
 
-        if(this.gameplay.selectedEntity.stateCurrent === "normal") {
+        if(beforeState !== this.gameplay.selectedEntity.stateCurrent) {
           this.slapsound.currentTime = 0;
           this.slapsound.play();
         } else {
@@ -159,6 +161,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
         this.clicksound.currentTime = 0;
         this.clicksound.play();
 
+      }
+
+      if(beforeState !== this.gameplay.selectedEntity.stateCurrent) {
+         this.clearSelections();
       }
 
       return;
@@ -392,14 +398,14 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
     // Update all entities
 	this.canvas.update();
-	
+
 	// PLAYING KEYBOARD SOUNDS
 	for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
 
 	      if(type === "coder") {
-		  
+
 	        for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
-			
+
 	          if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
 				this.playKeyboardsound = 1;
 				break;

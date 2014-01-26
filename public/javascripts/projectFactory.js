@@ -66,7 +66,9 @@ define(function() {
 			"Website",
 			"Online marketplace",
 			"Gamification Solution",
-			"Augmented Virtual Reality solution"
+			"Augmented Virtual Reality solution",
+			"FATKING",
+			"Failing with girls"
 		];
 		
 	};
