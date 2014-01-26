@@ -8,9 +8,13 @@ Credits:
 
 Programming:
 
+
 Super programmer - Mauno Vähä @maunovaha
+
 Right hand programmer - Sami Mylly @Noxi
+
 Visiting programmer - Jyrki Jakonen @stcl
+
 
 Graphics:
 
