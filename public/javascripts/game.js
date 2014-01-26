@@ -28,6 +28,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     this.gameplay = {
       money: 30000,
 	  losecondition: -50000,
+	  progress: 0,
       time: new Date(1970,01,01).getMilliseconds(),
       project: this.projectFactory.getProject(),
       costs: {
@@ -397,8 +398,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
 	      if(type === "coder") {
 		  
-			
-
 	        for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
 			
 	          if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
@@ -412,6 +411,13 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 		   for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
 				if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
 					this.gameplay.money += 5;
+					this.gameplay.progress += 1;
+					if (this.gameplay.progress === 5000) {
+						this.notify("Project Completed: gained 10000 money!");
+						this.gameplay.project= this.projectFactory.getProject();
+						this.gameplay.progress = 0;
+						this.gameplay.money += 10000;
+					}
 				}
 			}
 		  if (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length>0){
