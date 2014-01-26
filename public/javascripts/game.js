@@ -437,6 +437,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 		  if (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length>0){
 			this.gameplay.money -= (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length)*3;
 			if (this.gameplay.money<this.gameplay.losecondition) {
+				this.isRunning = false;
 				alert("YOU LOSE! YOU'RE A FAILURE EVEN IN THIS STUPID BUSINESS!");
 			}
 		  }
