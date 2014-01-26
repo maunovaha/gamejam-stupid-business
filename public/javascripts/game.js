@@ -26,8 +26,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
     // Gameplay related settings
     this.gameplay = {
-      money: 0,
-	  losecondition: -50,
+      money: 30000,
+	  losecondition: -10000,
 	  progress: 0,
       time: new Date(1970,01,01).getMilliseconds(),
       project: this.projectFactory.getProject(),
