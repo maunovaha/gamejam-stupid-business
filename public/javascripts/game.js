@@ -489,6 +489,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
     // Update all entities
 	this.canvas.update();
+	
+	this.gameplay.money -= 1;
 
 	// PLAYING KEYBOARD SOUNDS & UPDATING MONEY + PROGRESS
 	for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
@@ -507,7 +509,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 	      }
 		   for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
 				if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
-					this.gameplay.money += 5;
+					this.gameplay.money += 7;
 					this.gameplay.progress += 1;
 					if (this.gameplay.progress === 5000) {
 						this.notify("Project Completed: gained 10000 money!");
@@ -518,7 +520,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 				}
 			}
 		  if (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length>0){
-			this.gameplay.money -= (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length)*3;
+			this.gameplay.money -= (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length)*5;
 			if (this.gameplay.money<this.gameplay.losecondition) {
 				this.isRunning = false;
 				alert("YOU LOSE! YOU'RE A FAILURE EVEN IN THIS STUPID BUSINESS!");
