@@ -45,7 +45,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
         }
       },
       // floor player is viewing
-      currentFloor: 1
+      currentFloor: 1,
+      selectedEntity: null
     };
 
     // Entity factory
@@ -77,7 +78,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
       cookPrice: $('#cook').find('.price'),
       buyFloorPrice: $('#buy-floor').find('.price'),
       // Person area of selections
-      person: $('#person')
+      personArea: $('.person-area')
     };
 
     /**
@@ -128,11 +129,49 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
         x -= 4;
 
         if(typeof this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y] !== "undefined")
-          this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y].onClick(x, y);
+          this.selectEntity(this.gameplay.floors[this.gameplay.currentFloor][type][x + "," + y]);
+        else
+          this.clearSelections();
 
       }
 
     }
+
+  };
+
+  /**
+   * Called when entity clicked on canvas
+   *
+   */
+  Game.prototype.selectEntity = function(entity) {
+
+    // If selected same again... just go away..
+    if(this.gameplay.selectedEntity != null &&
+      this.gameplay.selectedEntity.x === entity.x &&
+      this.gameplay.selectedEntity.y === entity.y) {
+      // Clear selections..
+      this.clearSelections();
+      return;
+    }
+
+    // Clear previous
+    this.clearSelections();
+
+    // Show correct view...
+    $('#person-' + entity.type).removeClass('hidden');
+    this.gameplay.selectedEntity = entity;
+
+  };
+
+  /**
+   * Called when UI selections needs to be toggled away.. (e.g. floor change)
+   *
+   */
+  Game.prototype.clearSelections = function(entity) {
+
+    // Setting UI to default hidden state
+    this.ui.personArea.addClass("hidden");
+    this.gameplay.selectedEntity = null;
 
   };
 

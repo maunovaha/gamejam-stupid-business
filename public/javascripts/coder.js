@@ -4,9 +4,6 @@ define(['entity'], function(Entity) {
 	 *
 	 *
 	 */
-	 
-	
-	 
 	var Coder = function(options) {
 		Entity.call(this, options);
 
@@ -15,9 +12,9 @@ define(['entity'], function(Entity) {
 		// position from left & top
 		this.left = 256;
 		this.top = 0;
-		
+
 		//possible states for coder
-		this.states = { 
+		this.states = {
 			normal: true,
 			sleeping: false,
 			hungry: false,
@@ -31,7 +28,7 @@ define(['entity'], function(Entity) {
 	Coder.prototype.draw = function(ctx) {
 
 		ctx.drawImage(
-			this.tileFactory.images.sitting, 
+			this.tileFactory.images.sitting,
 			this.sprite.x * this.sprite.width,
 			this.sprite.y * this.sprite.height,
 			this.sprite.width,
@@ -43,11 +40,11 @@ define(['entity'], function(Entity) {
 		);
 
 	};
-	
+
 	Coder.prototype.update = function() {
 
 		if (this.states.normal) {
-			
+
 			var n = Math.floor(Math.random() * (10000 - 0 + 1));
 			if (n>9980) {
 				x = Math.floor(Math.random() * (5 - 0 + 1));
@@ -64,7 +61,7 @@ define(['entity'], function(Entity) {
 						console.log("Toilet");
 						break;
 					}
-					default: { 
+					default: {
 						this.states.sleeping = true;
 						this.states.normal= false;
 						console.log("Sleeping");
@@ -74,9 +71,9 @@ define(['entity'], function(Entity) {
 			}
 
 		}
-	
+
 	};
-	
+
 
 	/**
 	 *
