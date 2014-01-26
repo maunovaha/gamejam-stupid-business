@@ -78,7 +78,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
       cookPrice: $('#cook').find('.price'),
       buyFloorPrice: $('#buy-floor').find('.price'),
       // Person area of selections
-      personArea: $('.person-area')
+      personArea: $('.person-area'),
+      // Buttons
+      slap: $('#slap'),
+      toilet: $('#toilet'),
+      feed: $('#feed')
     };
 
     /**
@@ -96,6 +100,16 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 
     });
 
+    // Buttons..
+    $(".action").click(function(e) {
+
+      var type = $(this).attr('id');
+
+      self.actionClick(type);
+
+    });
+
+
     // New floor..
     this.ui.buyFloor.click(function(e) {
 
@@ -112,6 +126,26 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
       self.onClick(x, y);
 
     });
+
+  };
+
+  Game.prototype.actionClick = function(type) {
+
+    if(this.gameplay.selectedEntity != null) {
+
+      if(type === "slap") {
+
+        this.gameplay.selectedEntity.slap();
+        this.slapsound.play();
+
+      }
+
+
+      return;
+
+    }
+
+    this.clearSelections();
 
   };
 
@@ -158,7 +192,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
     this.clearSelections();
 
     // Show correct view...
+    $('#person-' + entity.type).find('.person img').attr("src", "/images/" + entity.stateCurrent + ".png");
     $('#person-' + entity.type).removeClass('hidden');
+
     this.gameplay.selectedEntity = entity;
 
   };
@@ -171,6 +207,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 
     // Setting UI to default hidden state
     this.ui.personArea.addClass("hidden");
+    $('.person img').attr("src", "/images/normal.png");
+    // todo add manager image..
+
     this.gameplay.selectedEntity = null;
 
   };

@@ -37,6 +37,12 @@ define(['entity'], function(Entity) {
 
 	Coder.prototype = Object.create(Entity.prototype);
 
+  Coder.prototype.slap = function() {
+
+    this.stateCurrent = "normal";
+
+  };
+
 	Coder.prototype.draw = function(ctx) {
 
 		ctx.drawImage(

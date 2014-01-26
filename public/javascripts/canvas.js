@@ -42,26 +42,25 @@ define(['zepto'], function($) {
 	    }
 
 	};
-	
+
 	Canvas.prototype.update = function() {
 
-		// Draw all entities
-	    for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
+		// Update all entities
+	    for(var floor in this.gameplay.floors) {
+        for(var type in this.gameplay.floors[floor]) {
+          if(type === "coder") {
 
-	      if(type === "coder") {
+            for(var key in this.gameplay.floors[floor][type]) {
 
-	        for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
+              this.gameplay.floors[this.gameplay.currentFloor][type][key].update();
 
-	          this.gameplay.floors[this.gameplay.currentFloor][type][key].update();
+            }
 
-	        }
+          }
 
-	      }
-
-	      break;
-
+          break;
+        }
 	    }
-
 	};
 
 	return Canvas;

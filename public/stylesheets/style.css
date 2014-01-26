@@ -290,6 +290,10 @@ canvas {
 .ui-content .right .person-area td {
   width: 33.3333%;
 }
+.ui-content .right .person-area .person {
+  background-color: #c0ff33;
+  text-align: center;
+}
 .ui-content .right .hidden {
   display: none;
 }
