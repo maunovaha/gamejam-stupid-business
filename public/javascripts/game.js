@@ -1,5 +1,5 @@
-define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
-  function(AnimationFrame, Grid, $, EntityFactory, moment, Canvas) {
+define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projectFactory'],
+  function(AnimationFrame, Grid, $, EntityFactory, moment, Canvas, ProjectFactory) {
 
 	/**
 	 *
@@ -21,11 +21,14 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 	this.keyboardsound = new Audio('audio/keyboard.ogg');
 	this.playKeyboardsound = 0;
 
+    // Projects..
+    this.projectFactory = new ProjectFactory();
+
     // Gameplay related settings
     this.gameplay = {
       money: 30000,
       time: new Date(1970,01,01).getMilliseconds(),
-      project: null, // randomize at start?
+      project: this.projectFactory.getProject(),
       costs: {
         coder: 5000,
         cleaner: 2500,
@@ -128,6 +131,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
       self.onClick(x, y);
 
     });
+
+  };
+
+  Game.prototype.setRandomProject = function() {
 
   };
 
