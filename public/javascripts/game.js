@@ -138,6 +138,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
       if(type === "slap") {
 
         this.gameplay.selectedEntity.slap();
+        this.slapsound.currentTime = 0;
         this.slapsound.play();
 
       }
@@ -351,9 +352,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 	Game.prototype.update = function(dt) {
 
     this.gameplay.time += 10000;
-	
-	
-	
+
+
+
 	if (this.playKeyboardsound>0) {
 	console.log("play keyboardsound");
 		if (typeof this.keyboardsound.loop == 'boolean')
@@ -393,7 +394,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 	      break;
 
 	    }
-		
+
 		}
 	};
 
