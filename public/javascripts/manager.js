@@ -13,8 +13,9 @@ define(['entity'], function(Entity) {
 		this.left = 0;
 		this.top = 432;
 
-		this.meetings = 5;
+		this.meetings = 2;
 		this.meetingTimer = 300;
+		this.stateCurrent = "normal";
 
 	};
 
@@ -44,9 +45,20 @@ define(['entity'], function(Entity) {
 	 *
 	 *
 	 */
-	Manager.prototype.update = function() {
+	Manager.prototype.meet = function() {
 
-		// end meeting..? timer?
+		if(this.meetings > 0) {
+	      this.stateCurrent = "meeting";
+	      this.meetings--;
+	    }
+
+	};
+
+	/**
+	 *
+	 *
+	 */
+	Manager.prototype.update = function() {
 
 	};
 

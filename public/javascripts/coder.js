@@ -13,26 +13,17 @@ define(['entity'], function(Entity) {
 		this.left = 256;
 		this.top = 0;
 
-		//possible states for coder - not in use atm
-		this.states = {
-			normal: true,
-			sleeping: true,
-			hungry: true,
-			toilet: true,
-      talking: false,
-      walking: false
-	  };
-
     this.frames = {
       normal: 0,
       sleeping: 6,
       talking: 7,
       toilet: 8,
       hungry: 9,
-      walking: 3
+      walking: 3,
+      meeting: 3
     };
 
-    this.path = options.path;
+    this.paths = options.paths;
     this.stateCurrent = "normal";
     this.frameCurrent = 0; // Animation frame
     this.pathCurrent = 0;
@@ -64,12 +55,34 @@ define(['entity'], function(Entity) {
       this.stateCurrent = "walking";
       this.pathForward = true;
 
-      var spotNow = this.path[this.pathCurrent];
+      var spotNow = this.paths["toilet"][this.pathCurrent];
 
       this.x = spotNow.x;
       this.y = spotNow.y;
 
       this.pathCurrent = 1;
+    }
+
+  };
+
+
+  Coder.prototype.meet = function() {
+
+    if(this.stateCurrent !== "walking") {
+
+      this.stateCurrent = "meeting";
+      console.log("setting to meeting!");
+      this.pathForward = true;
+
+      var spotNow = this.paths["meeting"][this.pathCurrent];
+
+      this.x = spotNow.x;
+      this.y = spotNow.y;
+
+      this.pathCurrent = 1;
+
+      this.timer = 0;
+
     }
 
   };
@@ -92,7 +105,7 @@ define(['entity'], function(Entity) {
 
   Coder.prototype.getLeft = function() {
 
-    if(this.stateCurrent !== "walking")
+    if(this.stateCurrent !== "walking" && this.stateCurrent !== "meeting")
       return this.left;
 
     return 0;
@@ -101,7 +114,7 @@ define(['entity'], function(Entity) {
 
   Coder.prototype.getTop = function() {
 
-    if(this.stateCurrent !== "walking")
+    if(this.stateCurrent !== "walking" && this.stateCurrent !== "meeting")
       return this.top;
 
     return 0;
@@ -160,13 +173,13 @@ define(['entity'], function(Entity) {
 
       if(walkOrNot === 7) {
 
-        var currentPath = this.path[this.pathCurrent];
+        var currentPath = this.paths["toilet"][this.pathCurrent];
 
         this.x = currentPath.x;
         this.y = currentPath.y;
 
         if(this.pathForward === true) {
-          if(this.pathCurrent < this.path.length - 1) {
+          if(this.pathCurrent < this.paths["toilet"].length - 1) {
             this.pathCurrent++;
           } else {
             this.pathForward = false;
@@ -193,6 +206,54 @@ define(['entity'], function(Entity) {
 
         this.frameCurrent = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
 
+      }
+
+    } else if(this.stateCurrent === "meeting") {
+
+      if(this.timer < 0) {
+
+        var walkOrNot = Math.floor(Math.random() * (7 - 0 + 1)) + 0;
+
+        if(walkOrNot === 7) {
+
+          var currentPath = this.paths["meeting"][this.pathCurrent];
+
+          this.x = currentPath.x;
+          this.y = currentPath.y;
+
+          if(this.pathForward === true) {
+            if(this.pathCurrent < this.paths["meeting"].length - 1) {
+              this.pathCurrent++;
+            } else {
+              this.pathForward = false;
+              this.timer = Math.floor(Math.random() * (5000 - 0 + 1)) + 2000;
+            }
+
+          } else if(this.pathForward === false) {
+
+            if(this.pathCurrent > 0) {
+              this.pathCurrent--;
+            } else {
+              // finished moving
+              this.stateCurrent = "normal";
+              this.x -= 4;
+            }
+
+          }
+
+        }
+
+        // then walk.. correct path to end.. and back?
+        var changeFrameW = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+
+        if(changeFrameW === 0) {
+
+          this.frameCurrent = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+
+        }
+
+      } else {
+        this.timer -= 50;
       }
 
     }
