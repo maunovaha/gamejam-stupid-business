@@ -9,7 +9,7 @@ define(['sprite'], function(Sprite) {
 		this.animationLength = 3; /* length of all animations */
 
 		this.paths = {
-			sitting: "/images/SB-spritesheet.png",
+			sitting: "/images/SB-spritesheet_new.png",
 			standing: ""
 		};
 
@@ -60,7 +60,7 @@ define(['sprite'], function(Sprite) {
 
 				}
 
-		        return callback(null);
+		    return callback(null);
 
 			};
 

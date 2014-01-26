@@ -16,10 +16,21 @@ define(['entity'], function(Entity) {
 		//possible states for coder
 		this.states = {
 			normal: true,
-			sleeping: false,
-			hungry: false,
-			toilet: false
-			};
+			sleeping: true,
+			hungry: true,
+			toilet: true
+	  };
+
+    this.frames = {
+      normal: 0,
+      sleeping: 6,
+      talking: 7,
+      toilet: 8,
+      hungry: 9
+    };
+
+    this.stateCurrent = "normal";
+    this.frameCurrent = 0; // Animation frame
 
 	};
 
@@ -29,7 +40,7 @@ define(['entity'], function(Entity) {
 
 		ctx.drawImage(
 			this.tileFactory.images.sitting,
-			this.sprite.x * this.sprite.width,
+			(this.sprite.x * this.sprite.width) + (this.frames[this.stateCurrent] + this.frameCurrent) * this.sprite.width,
 			this.sprite.y * this.sprite.height,
 			this.sprite.width,
 			this.sprite.height,
@@ -43,32 +54,44 @@ define(['entity'], function(Entity) {
 
 	Coder.prototype.update = function() {
 
-		if (this.states.normal) {
+		if(this.stateCurrent === "normal") {
 
-			var n = Math.floor(Math.random() * (10000 - 0 + 1));
+			var n = Math.floor(Math.random() * (10000 - 0 + 1) + 0);
+
 			if (n>9980) {
-				x = Math.floor(Math.random() * (5 - 0 + 1));
+				x = Math.floor(Math.random() * (5 - 0 + 1) + 0);
 				switch (x) {
 					case 0: {
-						this.states.hungry = true;
-						this.states.normal= false;
+						this.stateCurrent = "hungry";
 						console.log("Hungry");
 						break;
 					}
 					case 1: {
-						this.states.toilet = true;
-						this.states.normal= false;
+						this.stateCurrent = "toilet";
 						console.log("Toilet");
 						break;
 					}
 					default: {
-						this.states.sleeping = true;
-						this.states.normal= false;
+						this.stateCurrent = "sleeping";
 						console.log("Sleeping");
 						break;
 					}
 				}
 			}
+
+      if(this.stateCurrent === "normal") {
+
+        var changeFrame = Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+
+        if(changeFrame === 0) {
+
+          this.frameCurrent = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+
+        }
+
+      } else {
+        this.frameCurrent = 0;
+      }
 
 		}
 
@@ -80,6 +103,8 @@ define(['entity'], function(Entity) {
 	 *
 	 */
 	Coder.prototype.onClick = function(x, y) {
+
+    //
 
 		console.log("Coder x: " + x + " y: " + y);
 
