@@ -27,6 +27,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     // Gameplay related settings
     this.gameplay = {
       money: 30000,
+	  losecondition: -50000,
       time: new Date(1970,01,01).getMilliseconds(),
       project: this.projectFactory.getProject(),
       costs: {
@@ -371,7 +372,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
 	//RELATED TO KEYBOARDSOUNDS
 	if (this.playKeyboardsound>0) {
-	console.log("play keyboardsound");
 		if (typeof this.keyboardsound.loop == 'boolean')
 		{
 			this.keyboardsound.loop = true;
@@ -385,7 +385,6 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 		}
 		this.keyboardsound.play();
 	} else {
-	console.log("don't play keyboardsound");
 		this.keyboardsound.pause();
 	}
 	// NO LONGER AT THIS POINT RELATED TO KEYBOARD SOUNDS
@@ -417,6 +416,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 			}
 		  if (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length>0){
 			this.gameplay.money -= (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length)*3;
+			if (this.gameplay.money<this.gameplay.losecondition) {
+				alert("YOU LOSE! YOU'RE A FAILURE EVEN IN THIS STUPID BUSINESS!");
+			}
 		  }
 	      break;
 
