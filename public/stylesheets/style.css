@@ -184,7 +184,7 @@ canvas,
 .ui-wrapper .ui-header,
 .ui-start .ui-header {
   height: 32px;
-  background: #ccc;
+  background: #eee;
   padding: 0px;
   margin: 0px;
   padding-bottom: 8px;
@@ -321,4 +321,8 @@ canvas,
 }
 .visiblee {
   display: block;
+}
+#notification {
+  font-size: 16px;
+  font-weight: bold;
 }
