@@ -50,27 +50,26 @@ define(['entity'], function(Entity) {
 			
 			var n = Math.floor(Math.random() * (10000 - 0 + 1));
 			if (n>9980) {
-				x = Math.floor(Math.random() * (2 - 0 + 1));
+				x = Math.floor(Math.random() * (5 - 0 + 1));
 				switch (x) {
-					case 0: { 
-						this.states.sleeping = true;
-						this.states.normal= false;
-						console.log("Sleeping");
-						break;
-					}
-					case 1: {
+					case 0: {
 						this.states.hungry = true;
 						this.states.normal= false;
 						console.log("Hungry");
 						break;
 					}
-					case 2: {
+					case 1: {
 						this.states.toilet = true;
 						this.states.normal= false;
 						console.log("Toilet");
 						break;
 					}
-					default: console.log("FAULTS");
+					default: { 
+						this.states.sleeping = true;
+						this.states.normal= false;
+						console.log("Sleeping");
+						break;
+					}
 				}
 			}
 
