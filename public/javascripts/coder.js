@@ -13,12 +13,13 @@ define(['entity'], function(Entity) {
 		this.left = 256;
 		this.top = 0;
 
-		//possible states for coder
+		//possible states for coder - not in use atm
 		this.states = {
 			normal: true,
 			sleeping: true,
 			hungry: true,
-			toilet: true
+			toilet: true,
+      talking: false
 	  };
 
     this.frames = {
@@ -69,6 +70,12 @@ define(['entity'], function(Entity) {
 					case 1: {
 						this.stateCurrent = "toilet";
 						console.log("Toilet");
+						break;
+					}
+					case 2: {
+						this.states.talking = true;
+						this.states.normal= false;
+						console.log("Talking");
 						break;
 					}
 					default: {
