@@ -79,8 +79,7 @@ define(['entity'], function(Entity) {
 						break;
 					}
 					case 2: {
-						this.states.talking = true;
-						this.states.normal= false;
+						this.stateCurrent = "talking";
 						console.log("Talking");
 						break;
 					}

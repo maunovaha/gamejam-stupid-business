@@ -18,6 +18,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
   	this.register = new Audio('audio/register.ogg');
   	this.notifysound = new Audio('audio/notify.ogg');
   	this.slapsound = new Audio('audio/Slap.ogg');
+	this.keyboardsound = new Audio('audio/keyboard.ogg');
+	this.playKeyboardsound = 0;
 
     // Gameplay related settings
     this.gameplay = {
@@ -349,9 +351,50 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
 	Game.prototype.update = function(dt) {
 
     this.gameplay.time += 10000;
+	
+	
+	
+	if (this.playKeyboardsound>0) {
+	console.log("play keyboardsound");
+		if (typeof this.keyboardsound.loop == 'boolean')
+		{
+			this.keyboardsound.loop = true;
+		}
+		else
+		{
+			this.keyboardsound.addEventListener('ended', function() {
+				this.currentTime = 0;
+				this.play();
+			}, false);
+		}
+		this.keyboardsound.play();
+	} else {
+	console.log("don't play keyboardsound");
+		this.keyboardsound.pause();
+	}
 
     // Update all entities
 	this.canvas.update();
+	for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
+
+	      if(type === "coder") {
+
+	        for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
+
+	          if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
+				this.playKeyboardsound = 1;
+				break;
+			  } else {
+			  this.playKeyboardsound = 0;
+			  }
+
+	      }
+
+	      break;
+
+	    }
+		
+		}
 	};
 
   /**
