@@ -516,7 +516,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 				if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
 					this.gameplay.money += 7;
 					this.gameplay.progress += 1;
-					if (this.gameplay.progress === 5000) {
+					if (this.gameplay.progress === 3000) {
 						this.notify("Project Completed: gained 10000 money!");
 						this.gameplay.project= this.projectFactory.getProject();
 						this.gameplay.progress = 0;
