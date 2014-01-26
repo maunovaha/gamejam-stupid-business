@@ -17,6 +17,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
   	var click = new Audio('audio/click.ogg');
   	this.register = new Audio('audio/register.ogg');
   	this.notifysound = new Audio('audio/notify.ogg');
+  	this.slapsound = new Audio('audio/Slap.ogg');
 
     // Gameplay related settings
     this.gameplay = {
@@ -272,7 +273,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas'],
     this.gameplay.time += 10000;
 
     // Update all entities
-
+	this.canvas.update();
 	};
 
   /**
