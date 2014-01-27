@@ -588,9 +588,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
    */
   Game.prototype.refreshUI = function() {
 
-    //this.ui.money.text(this.gameplay.money);
+    this.ui.money.text(this.gameplay.money + "$");
     this.ui.time.text(moment(new Date(this.gameplay.time)).format('MMMM Do YYYY, h:mm:ss a'));
-    //this.ui.project.text(this.gameplay.project);
+    this.ui.project.text(this.gameplay.project);
 
   };
 

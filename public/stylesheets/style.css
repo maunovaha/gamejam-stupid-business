@@ -207,29 +207,30 @@ canvas,
 .ui-start .ui-header .notification-area {
   float: left;
   text-align: center;
-  width: 640px;
+  width: 656px;
 }
 .ui-wrapper .ui-header .status-area,
 .ui-start .ui-header .status-area {
   float: right;
   text-align: right;
-  width: 384px;
+  width: 368px;
 }
 .ui-wrapper .ui-header .status-area .cash,
 .ui-start .ui-header .status-area .cash,
 .ui-wrapper .ui-header .status-area #time,
 .ui-start .ui-header .status-area #time {
-  display: inline-block;
   font-weight: bold;
   margin: 0px;
   padding: 0px;
 }
 .ui-wrapper .ui-header .status-area .cash,
 .ui-start .ui-header .status-area .cash {
+  float: left;
   margin-right: 30px;
 }
 .ui-wrapper .ui-header .status-area #time,
 .ui-start .ui-header .status-area #time {
+  float: right;
   margin-right: 16px;
 }
 .ui-content {
