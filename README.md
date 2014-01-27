@@ -2,7 +2,7 @@ Stupid business - Global game jam 2014 entry.
 
 :::YOU CAN PLAY IT AT LIVE ALSO FROM HEROKU:::
 
-Version: 0.0.1 - http://intense-depths-6438.herokuapp.com/
+Version: 0.0.2 - http://intense-depths-6438.herokuapp.com/
 
 ----------------------------------------------------------------
 
