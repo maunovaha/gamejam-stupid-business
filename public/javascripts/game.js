@@ -28,7 +28,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     this.gameplay = {
       reallyLOSTED: false,
       money: 30000,
-	  losecondition: -10000,
+	  losecondition: -1500,
 	  progress: 0,
       time: new Date(1970,01,01).getMilliseconds(),
       project: this.projectFactory.getProject(),
@@ -508,79 +508,79 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
     this.gameplay.time += 10000;
 
-	//RELATED TO KEYBOARDSOUNDS
-	if (this.playKeyboardsound>0) {
-		if (typeof this.keyboardsound.loop == 'boolean')
-		{
-			this.keyboardsound.loop = true;
-		}
-		else
-		{
-			this.keyboardsound.addEventListener('ended', function() {
+  	//RELATED TO KEYBOARDSOUNDS
+  	if (this.playKeyboardsound>0) {
+  		if (typeof this.keyboardsound.loop == 'boolean')
+  		{
+  			this.keyboardsound.loop = true;
+  		}
+  		else
+  		{
+  			this.keyboardsound.addEventListener('ended', function() {
 
-        try{
-				this.play();
-        this.currentTime = 0;
-        } catch(e) {}
-			}, false);
-		}
-    try{
-		  this.keyboardsound.play();
-    } catch(e) {}
+          try{
+  				this.play();
+          this.currentTime = 0;
+          } catch(e) {}
+  			}, false);
+  		}
+      try{
+  		  this.keyboardsound.play();
+      } catch(e) {}
 
-	} else {
-		this.keyboardsound.pause();
-	}
-	// NO LONGER AT THIS POINT RELATED TO KEYBOARD SOUNDS
+  	} else {
+  		this.keyboardsound.pause();
+  	}
+	 // NO LONGER AT THIS POINT RELATED TO KEYBOARD SOUNDS
+    if (this.gameplay.money <= this.gameplay.losecondition) {
+      this.isRunning = false;
+      this.gameplay.reallyLOSTED = true;
+      this.notify("YOU LOSE! YOU'RE A FAILURE EVEN IN THIS STUPID BUSINESS!");
+      this.keyboardsound.pause();
+      return;
+    } else if(Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length === this.entityFactory.getFactory("coder").maxCoders) {
+      this.isRunning = false;
+      this.gameplay.reallyLOSTED = true;
+      this.notify("CONGRATULATIONS!, You completed the demo game!");
+      this.keyboardsound.pause();
+      return;
+    }
 
     // Update all entities
 	this.canvas.update();
 
-	this.gameplay.money -= 1;
-	if (this.gameplay.money<this.gameplay.losecondition) {
-				this.isRunning = false;
-        this.gameplay.reallyLOSTED = true;
-				this.notify("YOU LOSE! YOU'RE A FAILURE EVEN IN THIS STUPID BUSINESS!");
-			}
+  this.playKeyboardsound = 0;
+
+	this.gameplay.money -= Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length;
+
+  var howManyWorking = 0;
 
 	// PLAYING KEYBOARD SOUNDS & UPDATING MONEY + PROGRESS
-	for(var type in this.gameplay.floors[this.gameplay.currentFloor]) {
+	for(var key in this.gameplay.floors[this.gameplay.currentFloor]["coder"]) {
 
-	      if(type === "coder") {
+    if (this.playKeyboardsound === 0 && this.gameplay.floors[this.gameplay.currentFloor]["coder"][key].stateCurrent === "normal")
+    	this.playKeyboardsound = 1;
 
-	        for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
+    if (this.gameplay.floors[this.gameplay.currentFloor]["coder"][key].stateCurrent === "normal"){
+      howManyWorking++;
+    }
 
-	          if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
-				this.playKeyboardsound = 1;
-				break;
-			  } else {
-			  this.playKeyboardsound = 0;
-			  }
+	}
+  this.gameplay.progress += howManyWorking;
 
-	      }
-		   for(var key in this.gameplay.floors[this.gameplay.currentFloor][type]) {
-				if (this.gameplay.floors[this.gameplay.currentFloor][type][key].stateCurrent === "normal"){
-					this.gameplay.money += 7;
-					this.gameplay.progress += 1;
-					if (this.gameplay.progress === 3000) {
-						this.notify("Project Completed: gained 10000 money!");
-						this.gameplay.project= this.projectFactory.getProject();
-						this.gameplay.progress = 0;
-						this.gameplay.money += 10000;
-					}
-				}
-			}
-		  if (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length>0){
-			this.gameplay.money -= (Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length)*5;
+  if (this.gameplay.progress >= 1200) {
+    var reward = 750 * Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length;
+    if(reward >= 4000)
+      reward = 4000;
 
-		  }
-	      break;
-
-	    }
-
-		}
-	};
+    this.gameplay.project = this.projectFactory.getProject();
+    this.gameplay.progress = 0;
+    this.gameplay.money += reward;
+    this.notify("Project Completed: gained " + reward + " money!");
+  }
 	// DONE PLAYING KEYBOARD SOUNDS & UPDATING MONEY + PROGRESS
+
+  };
 
   /**
    * Method for updating UI element states

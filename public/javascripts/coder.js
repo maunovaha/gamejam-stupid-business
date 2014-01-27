@@ -128,7 +128,7 @@ define(['entity'], function(Entity) {
 			var n = Math.floor(Math.random() * (10000 - 0 + 1) + 0);
 
 			if (n>9980) {
-				x = Math.floor(Math.random() * (5 - 0 + 1) + 0);
+				var x = Math.floor(Math.random() * (5 - 0 + 1) + 0);
 				switch (x) {
 					case 0: {
 						this.stateCurrent = "hungry";
@@ -141,8 +141,14 @@ define(['entity'], function(Entity) {
 						break;
 					}
 					case 2: {
-						this.stateCurrent = "talking";
-						//console.log("Talking");
+
+            var v = Math.floor(Math.random() * (5 - 0 + 1) + 0);
+
+            if(v === 0) {
+						  this.stateCurrent = "talking";
+						  //console.log("Talking");
+            }
+
 						break;
 					}
 					default: {

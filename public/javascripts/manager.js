@@ -13,7 +13,7 @@ define(['entity'], function(Entity) {
 		this.left = 0;
 		this.top = 432;
 
-		this.meetings = 2;
+		this.meetings = 1;
 		this.meetingTimer = 300;
 		this.stateCurrent = "normal";
 
