@@ -27,7 +27,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     // Gameplay related settings
     this.gameplay = {
       reallyLOSTED: false,
-      money: 30000,
+      money: 300000,
 	  losecondition: -10000,
 	  progress: 0,
       time: new Date(1970,01,01).getMilliseconds(),
@@ -231,9 +231,24 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
         this.clicksound.currentTime = 0;
         this.clicksound.play();
 
+      } else if(type === "kick") {
+
+        var xy = this.gameplay.selectedEntity.x + "," + this.gameplay.selectedEntity.y;
+
+        this.gameplay.selectedEntity = null;
+
+        delete this.gameplay.floors[this.gameplay.currentFloor]["manager"][xy];
+
+        this.slapsound.currentTime = 0;
+        this.slapsound.play();
+
+        this.notify("Manager says: I didn't wan't to work for this company anyway!");
+
+        this.clearSelections();
+
       }
 
-      if(beforeState !== this.gameplay.selectedEntity.stateCurrent) {
+      if(this.gameplay.selectedEntity != null && beforeState !== this.gameplay.selectedEntity.stateCurrent) {
 
          // if meeting started...
          if(this.gameplay.selectedEntity.type === "manager") {
