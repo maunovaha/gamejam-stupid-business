@@ -24,8 +24,11 @@ define(['game'], function(Game) {
 		else
 		{
 			background.addEventListener('ended', function() {
-				this.currentTime = 0;
-				this.play();
+        try {
+  				this.play();
+          this.currentTime = 0;
+        } catch(e) {
+        }
 			}, false);
 		}
 		background.play();

@@ -18,8 +18,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
   	this.register = new Audio('audio/register.ogg');
   	this.notifysound = new Audio('audio/notify.ogg');
   	this.slapsound = new Audio('audio/Slap.ogg');
-	this.keyboardsound = new Audio('audio/keyboard.ogg');
-	this.playKeyboardsound = 0;
+	  this.keyboardsound = new Audio('audio/keyboard.ogg');
+	  this.playKeyboardsound = 0;
 
     // Projects..
     this.projectFactory = new ProjectFactory();
@@ -27,7 +27,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     // Gameplay related settings
     this.gameplay = {
       reallyLOSTED: false,
-      money: 300000,
+      money: 30000,
 	  losecondition: -10000,
 	  progress: 0,
       time: new Date(1970,01,01).getMilliseconds(),
@@ -108,8 +108,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
         if(type !== "cook" || type !== "cleaner") {
 
-           self.clicksound.currentTime = 0;
-          self.clicksound.play();
+          try {
+            self.clicksound.play();
+            self.clicksound.currentTime = 0;
+          } catch(e) {}
           self.addEntity(type);
 
         }
@@ -173,26 +175,34 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
         this.gameplay.selectedEntity.slap();
 
         if(beforeState !== this.gameplay.selectedEntity.stateCurrent) {
-          this.slapsound.currentTime = 0;
+          try {
           this.slapsound.play();
+          this.slapsound.currentTime = 0;
+          } catch(e) {}
         } else {
-          this.clicksound.currentTime = 0;
+          try {
           this.clicksound.play();
+          this.clicksound.currentTime = 0;
+          } catch(e) {}
         }
 
       } else if(type === "feed") {
 
         this.gameplay.selectedEntity.feed();
 
-        this.clicksound.currentTime = 0;
+        try {
         this.clicksound.play();
+        this.clicksound.currentTime = 0;
+        } catch(e) {}
 
       } else if(type === "toilet") {
 
         this.gameplay.selectedEntity.toilet();
 
-        this.clicksound.currentTime = 0;
+        try{
         this.clicksound.play();
+        this.clicksound.currentTime = 0;
+        } catch(e) {}
 
       } else if(type === "meet") {
 
@@ -228,8 +238,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
         }
 
-        this.clicksound.currentTime = 0;
-        this.clicksound.play();
+
+        try {
+          this.clicksound.play();
+          this.clicksound.currentTime = 0;
+        } catch(e) {}
 
       } else if(type === "kick") {
 
@@ -239,8 +252,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
         delete this.gameplay.floors[this.gameplay.currentFloor]["manager"][xy];
 
-        this.slapsound.currentTime = 0;
+        try{
         this.slapsound.play();
+        this.slapsound.currentTime = 0;
+        } catch(e) {}
 
         this.notify("Manager says: I didn't wan't to work for this company anyway!");
 
@@ -372,8 +387,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     }
 
   	// Entity added, play sound!
-  	this.register.currentTime = 0;
+
+    try{
   	this.register.play();
+    this.register.currentTime = 0;
+    } catch(e) {}
 
   };
 
@@ -387,8 +405,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
         }, 150, 'linear', function() {
           $(this).text(text).css({ opacity: 1 });
     });
-  	this.notifysound.currentTime = 0;
+
+    try{
   	this.notifysound.play();
+    this.notifysound.currentTime = 0;
+    } catch(e) {}
   };
 
   /**
@@ -496,11 +517,17 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 		else
 		{
 			this.keyboardsound.addEventListener('ended', function() {
-				this.currentTime = 0;
+
+        try{
 				this.play();
+        this.currentTime = 0;
+        } catch(e) {}
 			}, false);
 		}
-		this.keyboardsound.play();
+    try{
+		  this.keyboardsound.play();
+    } catch(e) {}
+
 	} else {
 		this.keyboardsound.pause();
 	}
@@ -561,9 +588,9 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
    */
   Game.prototype.refreshUI = function() {
 
-    this.ui.money.text(this.gameplay.money);
+    //this.ui.money.text(this.gameplay.money);
     this.ui.time.text(moment(new Date(this.gameplay.time)).format('MMMM Do YYYY, h:mm:ss a'));
-    this.ui.project.text(this.gameplay.project);
+    //this.ui.project.text(this.gameplay.project);
 
   };
 
