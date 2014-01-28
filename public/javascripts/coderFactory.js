@@ -8,6 +8,9 @@ define(['coder'], function(Coder) {
 
     this.gameplay = gameplay;
     this.tileFactory = tileFactory;
+	this.salary=0;
+	this.productivity=0;
+	this.totalSalary=0;
 
     this.maxCoders = 36;
 
@@ -204,6 +207,12 @@ define(['coder'], function(Coder) {
           // Buy it..
           this.gameplay.money -= this.gameplay.costs["coder"];
 
+		  
+		  // ramdomize a salary and productivity based on that
+		  this.salary = Math.floor(Math.random() * (118000 - 43000 + 1) + 43000);
+		  this.totalSalary += parseFloat(this.salary);
+		  this.productivity = (this.salary / 100000).toFixed(2);
+		  
           // todo: calculate next free position???
           this.gameplay.floors[this.gameplay.currentFloor]["coder"][slot.x + "," + slot.y] = new Coder({
             type: "coder",
@@ -211,7 +220,9 @@ define(['coder'], function(Coder) {
             y: slot.y,
             sprite: this.tileFactory.getSprite("sitting", "coder"),
             tileFactory: this.tileFactory,
-            paths: this.getPaths(slot.x, slot.y)
+            paths: this.getPaths(slot.x, slot.y),
+			salary: this.salary,
+			productivity: this.productivity
           });
 
           result.entity = this.gameplay.floors[this.gameplay.currentFloor]["coder"][slot.x + "," + slot.y];

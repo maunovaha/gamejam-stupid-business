@@ -18,8 +18,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
   	this.register = new Audio('audio/register.ogg');
   	this.notifysound = new Audio('audio/notify.ogg');
   	this.slapsound = new Audio('audio/Slap.ogg');
-	  this.keyboardsound = new Audio('audio/keyboard.ogg');
-	  this.playKeyboardsound = 0;
+	this.keyboardsound = new Audio('audio/keyboard.ogg');
+	this.playKeyboardsound = 0;
 
     // Projects..
     this.projectFactory = new ProjectFactory();
@@ -268,7 +268,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
          // if meeting started...
          if(this.gameplay.selectedEntity.type === "manager") {
 
-          this.notify("Manager says: EVERYBODY, lets have a meeting, im lonely.");
+          this.notify("Manager says: EVERYBODY, lets have a meeting, I'm lonely.");
 
          }
 
@@ -551,9 +551,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
   this.playKeyboardsound = 0;
 
-	this.gameplay.money -= Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length;
+	this.gameplay.money -= this.entityFactory.getFactory("coder").totalSalary / 100000;
 
   var howManyWorking = 0;
+  var prodFactor=0;
+  var costFactor=0;
 
 	// PLAYING KEYBOARD SOUNDS & UPDATING MONEY + PROGRESS
 	for(var key in this.gameplay.floors[this.gameplay.currentFloor]["coder"]) {
@@ -562,11 +564,12 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     	this.playKeyboardsound = 1;
 
     if (this.gameplay.floors[this.gameplay.currentFloor]["coder"][key].stateCurrent === "normal"){
-      howManyWorking++;
+     prodFactor += parseFloat(this.gameplay.floors[this.gameplay.currentFloor]["coder"][key].productivity);
+	 howManyWorking++;
     }
 
 	}
-  this.gameplay.progress += howManyWorking;
+  this.gameplay.progress += prodFactor;
 
   if (this.gameplay.progress >= 1200) {
     var reward = 750 * Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length;
@@ -576,7 +579,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     this.gameplay.project = this.projectFactory.getProject();
     this.gameplay.progress = 0;
     this.gameplay.money += reward;
-    this.notify("Project Completed: gained " + reward + " money!");
+    this.notify("Project Completed: gained " + reward + "$!");
   }
 	// DONE PLAYING KEYBOARD SOUNDS & UPDATING MONEY + PROGRESS
 
@@ -588,7 +591,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
    */
   Game.prototype.refreshUI = function() {
 
-    this.ui.money.text(this.gameplay.money + "$");
+    this.ui.money.text(this.gameplay.money.toFixed(2) + "$");
     this.ui.time.text(moment(new Date(this.gameplay.time)).format('MMMM Do YYYY, h:mm:ss a'));
     this.ui.project.text(this.gameplay.project);
 

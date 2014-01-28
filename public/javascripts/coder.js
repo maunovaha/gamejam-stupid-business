@@ -28,6 +28,10 @@ define(['entity'], function(Entity) {
     this.frameCurrent = 0; // Animation frame
     this.pathCurrent = 0;
     this.pathForward = true;
+	this.salary = options.salary;
+	this.productivity = options.productivity;
+	
+	console.log(this.salary + " " + this.productivity);
 
 	};
 
