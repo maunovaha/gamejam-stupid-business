@@ -14,13 +14,22 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     this.isRunning = false;
 
   	// Sounds
-  	this.clicksound = new Audio('audio/click.ogg');
-  	this.register = new Audio('audio/register.ogg');
-  	this.notifysound = new Audio('audio/notify.ogg');
-  	this.slapsound = new Audio('audio/Slap.ogg');
-	this.keyboardsound = new Audio('audio/keyboard.ogg');
+	
+	if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+		this.clicksound = new Audio('audio/click.mp3');
+		this.register = new Audio('audio/register.mp3');
+		this.notifysound = new Audio('audio/notify.mp3');
+		this.slapsound = new Audio('audio/Slap.mp3');
+		this.keyboardsound = new Audio('audio/keyboard.mp3');
+	} else {
+		this.clicksound = new Audio('audio/click.ogg');
+		this.register = new Audio('audio/register.ogg');
+		this.notifysound = new Audio('audio/notify.ogg');
+		this.slapsound = new Audio('audio/Slap.ogg');
+		this.keyboardsound = new Audio('audio/keyboard.ogg');
+	}
 	this.playKeyboardsound = 0;
-
+	
     // Projects..
     this.projectFactory = new ProjectFactory();
 
@@ -30,6 +39,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
       money: 30000,
 	  losecondition: -1500,
 	  progress: 0,
+	  progTarget: 1200,
       time: new Date(1970,01,01).getMilliseconds(),
       project: this.projectFactory.getProject(),
       costs: {
@@ -519,10 +529,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
   			this.keyboardsound.addEventListener('ended', function() {
 
           try{
-  				this.play();
-          this.currentTime = 0;
+  				
+          this.keyboardsound.currentTime = 0;
           } catch(e) {}
   			}, false);
+			this.keyboardsound.play();
   		}
       try{
   		  this.keyboardsound.play();
@@ -571,12 +582,13 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 	}
   this.gameplay.progress += prodFactor;
 
-  if (this.gameplay.progress >= 1200) {
-    var reward = 750 * Object.keys(this.gameplay.floors[this.gameplay.currentFloor]["coder"]).length;
-    if(reward >= 4000)
-      reward = 4000;
-
+  if (this.gameplay.progress >= this.gameplay.progTarget) {
+  
+  // Projects now vary in size + the rewards varies too
+  // Should we show progress somewhere? maybe as progressbar behind the project text?
+    var reward = (3,5 * this.gameplay.progTarget);
     this.gameplay.project = this.projectFactory.getProject();
+	this.gameplay.progTarget = Math.floor(Math.random() * (5000 - 1000 + 1) + 1000);  
     this.gameplay.progress = 0;
     this.gameplay.money += reward;
     this.notify("Project Completed: gained " + reward + "$!");

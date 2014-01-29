@@ -16,7 +16,11 @@ define(['game'], function(Game) {
 	 */
 	App.prototype.init = function() {
 
-		var background = new Audio('audio/background.ogg');
+		if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+			var background = new Audio('audio/background.mp3');
+		} else {
+			var background = new Audio('audio/background.ogg');
+		}
 		if (typeof background.loop == 'boolean')
 		{
 			background.loop = true;
@@ -25,10 +29,10 @@ define(['game'], function(Game) {
 		{
 			background.addEventListener('ended', function() {
         try {
-  				this.play();
-          this.currentTime = 0;
+		  this.currentTime = 0;
+		  this.play();
         } catch(e) {
-        }
+        } 
 			}, false);
 		}
 		background.play();
