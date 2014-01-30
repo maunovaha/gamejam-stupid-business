@@ -114,6 +114,13 @@ UPGRADES:
 Price x3 after each purchase, must buy for all at once
 
 	- Coffeedrips for Coders + 10% efficiency  500$ / coder
+	- Internal Filtration System for Coders - 10% need for toilet 800$ / coder
+	
 	- Nicotinepatches for Cooks + 10% efficiency  500$ / cook
+	- Heath of Sun Stoves + 10% delivery speed  800$ / cook
+	
 	- Improved hoovers for Cleaners + 10% efficiency 1000$ / cleaner
-	- Cuban cigars for Managers + 10% meeting speed  2000$ / Manager
+	- Crap^3 Processor Objects (C^3PO) + 10% speed  1800$ / cleaner
+	
+	- Cuban cigars for Managers + 10% meeting speed  20000$ / Floor
+	- Reseach^2 Department^2 (R2D2) + 1 meeting per manager 15000$ / Floor

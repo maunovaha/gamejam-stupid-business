@@ -267,7 +267,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
         this.slapsound.currentTime = 0;
         } catch(e) {}
 
-        this.notify("Manager says: I didn't wan't to work for this company anyway!");
+        this.notify("Manager says: I didn't want to work for this company anyway!");
 
         this.clearSelections();
 
@@ -399,8 +399,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
   	// Entity added, play sound!
 
     try{
+	this.register.currentTime = 0;
   	this.register.play();
-    this.register.currentTime = 0;
     } catch(e) {}
 
   };
@@ -417,8 +417,8 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     });
 
     try{
+	this.notifysound.currentTime = 0;
   	this.notifysound.play();
-    this.notifysound.currentTime = 0;
     } catch(e) {}
   };
 
