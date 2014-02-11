@@ -576,7 +576,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
   var prodFactor=0;
   var costFactor=0;
 
-	// PLAYING KEYBOARD SOUNDS & UPDATING MONEY + PROGRESS
+	/*  If any single coder is coding, play keyboard sounds
+	*	updating progress and money
+	*
+	*/
 	for(var key in this.gameplay.floors[this.gameplay.currentFloor]["coder"]) {
 
     if (this.playKeyboardsound === 0 && this.gameplay.floors[this.gameplay.currentFloor]["coder"][key].stateCurrent === "normal")
@@ -594,7 +597,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
   
   // Projects now vary in size + the rewards varies too
   // Should we show progress somewhere? maybe as progressbar behind the project text?
-    var reward = (3,5 * this.gameplay.progTarget);
+    var reward = (3 * this.gameplay.progTarget);
     this.gameplay.project = this.projectFactory.getProject();
 	this.gameplay.progTarget = Math.floor(Math.random() * (5000 - 1000 + 1) + 1000);  
     this.gameplay.progress = 0;
