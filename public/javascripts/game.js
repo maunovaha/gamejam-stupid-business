@@ -514,13 +514,10 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 	 *
 	 *
 	 */
-	Game.prototype.update = function(dt) {
-
-    this.gameplay.time += 10000;
-
-  	//RELATED TO KEYBOARDSOUNDS
-  	if (this.playKeyboardsound>0) {
-  		if (typeof this.keyboardsound.loop == 'boolean')
+	 
+	Game.prototype.playKeyboardSound = function() {
+		
+		if (typeof this.keyboardsound.loop == 'boolean')
   		{
   			this.keyboardsound.loop = true;
   		}
@@ -539,10 +536,21 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
   		  this.keyboardsound.play();
       } catch(e) {}
 
-  	} else {
+	};
+	 
+	Game.prototype.update = function(dt) {
+
+    this.gameplay.time += 10000;
+	
+	//RELATED TO KEYBOARDSOUNDS
+  	if (this.playKeyboardsound>0) {
+	this.playKeyboardSound();
+	}
+	  else {
   		this.keyboardsound.pause();
   	}
-	 // NO LONGER AT THIS POINT RELATED TO KEYBOARD SOUNDS
+  	// NO LONGER AT THIS POINT RELATED TO KEYBOARD SOUNDS
+	
     if (this.gameplay.money <= this.gameplay.losecondition) {
       this.isRunning = false;
       this.gameplay.reallyLOSTED = true;
