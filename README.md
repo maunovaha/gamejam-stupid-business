@@ -1,27 +1,24 @@
-Stupid business - Global game jam 2014 entry.
+# Stupid business
 
-:::YOU CAN PLAY IT AT LIVE ALSO FROM HEROKU:::
+Global gamejam 2014 game developed within 48 hours.
 
-Version: 0.0.2 - http://intense-depths-6438.herokuapp.com/
+### Play
 
-----------------------------------------------------------------
+http://intense-depths-6438.herokuapp.com/
 
-Credits:
+### Credits
 
-----------------------------------------------------------------
+* Mauno Vähä (Programming)
+* Sami Mylly (Programming & Music)
+* Jyrki Jakonen (Programming)
+* Marko Sellman (Graphics)
 
-Programming:
+### Contact
 
+If you have any questions regarding this game or license, start by reaching me using contact information below.
 
-Super programmer - Mauno Vähä @maunovaha
+Website: http://maunovaha.com
 
-Right hand programmer - Sami Mylly @Noxi
+Email: maunovaha[at]gmail.com
 
-Visiting programmer - Jyrki Jakonen @stcl
-
-
-Graphics:
-
-Super artist - Marko Sellman @MarkoSellman 
-
-Lots of placeholder graphics remains because we got Marko too late to help us out.(!)
+Twitter: @maunovaha
