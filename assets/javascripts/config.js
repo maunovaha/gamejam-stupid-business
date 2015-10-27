@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: 'javascripts',
+    baseUrl: 'assets/javascripts',
     paths: {
         jquery:         'lib/jquery',
         zepto:          'lib/zepto',

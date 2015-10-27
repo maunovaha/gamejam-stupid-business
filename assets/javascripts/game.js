@@ -14,11 +14,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     this.isRunning = false;
 
   	// Sounds
-  	this.clicksound = new Audio('audio/click.ogg');
-  	this.register = new Audio('audio/register.ogg');
-  	this.notifysound = new Audio('audio/notify.ogg');
-  	this.slapsound = new Audio('audio/Slap.ogg');
-	  this.keyboardsound = new Audio('audio/keyboard.ogg');
+  	this.clicksound = new Audio('assets/audio/click.ogg');
+  	this.register = new Audio('assets/audio/register.ogg');
+  	this.notifysound = new Audio('assets/audio/notify.ogg');
+  	this.slapsound = new Audio('assets/audio/Slap.ogg');
+	  this.keyboardsound = new Audio('assets/audio/keyboard.ogg');
 	  this.playKeyboardsound = 0;
 
     // Projects..
@@ -345,7 +345,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
     // Show correct view...
     if(entity.type === "coder") {
-      $('#person-' + entity.type).find('.person img').attr("src", "/images/" + entity.stateCurrent + ".png");
+      $('#person-' + entity.type).find('.person img').attr("src", "assets/images/" + entity.stateCurrent + ".png");
     }
 
     $('#person-' + entity.type).removeClass('hidden');
@@ -363,7 +363,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
     this.ui.personArea.addClass("hidden");
 
     if(this.gameplay.selectedEntity != null && this.gameplay.selectedEntity.type === "coder") {
-      $('#person-coder').find('.person img').attr("src", "/images/normal.png");
+      $('#person-coder').find('.person img').attr("src", "assets/images/normal.png");
     }
 
     this.gameplay.selectedEntity = null;

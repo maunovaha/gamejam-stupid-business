@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stupid business - Global game jam 2014 entry</title>
+    <link rel="stylesheet" href="assets/stylesheets/styles.css">
+    <script data-main="assets/javascripts/config" src="assets/javascripts/lib/require.js"></script>
+  </head>
+  <body>
+    <div class="ui-wrapper">
+      <div class="ui-header">
+        <div class="notification-area">
+          <p id="notification"><span>Welcome to stupid business v.0.0.2 - GGJ 2014 entry.!</span></p>
+        </div>
+        <div class="status-area">
+          <div class="cash">
+            <p><span id="money">0</span></p>
+          </div>
+          <div id="time">
+            <p>1.1.1970 00:00</p>
+          </div>
+        </div>
+      </div>
+      <div class="ui-content">
+        <div class="left">
+          <div id="start-screen" class="visible"></div>
+          <canvas width="640" height="480" id="drawable-canvas">Oops! Your browser is too OLD to play games with it - no stupid business for you.</canvas>
+        </div>
+        <div class="right">
+          <table class="status-area">
+            <thead>
+              <tr>
+                <th class="no-bg">
+                  <p class="no-margin-bottom">&laquo; Project &raquo;</p>
+                  <p class="no-margin-top"><span id="project"></span></p>
+                </th>
+              </tr>
+            </thead>
+          </table>
+          <table class="buy-area">
+            <tbody>
+              <tr>
+                <td id="coder" class="profession">
+                  <p><span>Coder &raquo; &nbsp;</span><span class="price">0</span><span class="currency"> $</span></p>
+                </td>
+                <td id="cleaner" class="profession gray">
+                  <p><span>Cleaner &raquo; &nbsp;</span><span class="price">0</span><span class="currency"> $</span></p>
+                </td>
+              </tr>
+              <tr>
+                <td id="cook" class="profession gray">
+                  <p><span>Cook &raquo; &nbsp;</span><span class="price">0</span><span class="currency"> $</span></p>
+                </td>
+                <td id="manager" class="profession">
+                  <p><span>Manager &raquo; &nbsp;</span><span class="price">0</span><span class="currency"> $</span></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" id="buy-floor">
+                  <p><span>Buy new floor to office &raquo; &nbsp;</span><span class="price">0</span><span class="currency"> $</span></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table id="person-coder" class="person-area hidden">
+            <tbody>
+              <tr>
+                <td id="slap" class="action">
+                  <p>Slap</p>
+                </td>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+                <td id="feed" class="action">
+                  <p>Feed</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+                <td class="no-bg person person-coder-img"><img src="assets/images/normal.png"/></td>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+              <tr>
+                <td id="toilet" class="action">
+                  <p>Toilet</p>
+                </td>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table id="person-manager" class="person-area hidden">
+            <tbody>
+              <tr>
+                <td id="meet" class="action">
+                  <p>Hold a Meeting</p>
+                </td>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+                <td id="kick" class="action">
+                  <p>Kick me out</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+                <td class="no-bg person person-manager-img"><img src="assets/images/manager.png"/></td>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+                <td class="no-bg">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

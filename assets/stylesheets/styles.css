@@ -163,7 +163,7 @@ canvas,
   top: auto;
 }
 #start-screen {
-  background-image: url("/images/start-bg.png");
+  background-image: url("../images/start-bg.png");
   background-repeat: no-repeat;
 }
 .hide {
@@ -234,7 +234,7 @@ canvas,
   margin-right: 16px;
 }
 .ui-content {
-  background-image: url("/images/bg_test_2.png");
+  background-image: url("../images/bg_test_2.png");
   background-repeat: no-repeat;
 }
 .ui-content {
@@ -246,7 +246,7 @@ canvas,
   height: 496px;
 }
 .ui-content .left {
-  background-image: url("/images/SB-bg.png");
+  background-image: url("../images/SB-bg.png");
   background-repeat: no-repeat;
   width: 640px;
   margin: 16px 0px 0px 16px;
@@ -270,7 +270,7 @@ canvas,
 }
 .ui-content .right th,
 .ui-content .right td {
-  background-image: url("/images/button_bg.png");
+  background-image: url("../images/button_bg.png");
   background-repeat: repeat-x;
   border: 1px solid black;
   cursor: pointer;
