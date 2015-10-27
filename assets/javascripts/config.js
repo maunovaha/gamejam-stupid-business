@@ -4,7 +4,6 @@ require.config({
         jquery:         'lib/jquery',
         zepto:          'lib/zepto',
         deferred: 	  	'lib/deferred',
-        reqanim:        'lib/req-anim',
         moment:         'lib/moment'
     },
     map: {
@@ -23,9 +22,6 @@ require.config({
       },
       zepto: {
           exports: 'Zepto'
-      },
-      reqanim: {
-          exports: 'AnimationFrame'
       }
     }
 });

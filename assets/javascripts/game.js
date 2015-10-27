@@ -1,5 +1,5 @@
-define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projectFactory'],
-  function(AnimationFrame, Grid, $, EntityFactory, moment, Canvas, ProjectFactory) {
+define(['grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projectFactory'],
+  function(Grid, $, EntityFactory, moment, Canvas, ProjectFactory) {
 
 	/**
 	 *
@@ -441,18 +441,11 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
 
       if(err) return alert(err);
 
-      // FPS 30
-  		var animFrame = new AnimationFrame(30),
-
-  			// Game loop specifics
-  			now = 0,
-  			then = 0,
-  			sub = 0,
-  			dt = 0.0;
-
-      // console.log("Testing Grid functionality");
-
-      // self.testGrid();
+      // Game loop specifics
+  		var now = 0,
+  			  then = 0,
+  			  sub = 0,
+  			  dt = 0.0;
 
   		/**
   		 * "The" loop
@@ -479,7 +472,7 @@ define(['reqanim', 'grid', 'zepto', 'entityFactory', 'moment', 'canvas', 'projec
         }
 
         // request next frame
-        animFrame.request(loop);
+        window.requestAnimationFrame(loop);
 
   		};
 
