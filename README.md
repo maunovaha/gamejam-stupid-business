@@ -1,10 +1,14 @@
 # Stupid business
 
-Global gamejam 2014 game developed within 48 hours.
+Simple 2d game in which you need to manage a software business.
+
+This game is developed for global gamejam 2014 within 48 hours.
+
+![Screenshot](http://maunovaha.com/assets/images/games/stupidbusiness_3.png)
 
 ### Play
 
-http://intense-depths-6438.herokuapp.com/
+This game can be played at [gamejolt](http://gamejolt.com/games/stupid-business/104679).
 
 ### Credits
 
