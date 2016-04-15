@@ -4,7 +4,7 @@ Simple 2d game in which you need to manage a software business.
 
 This game is developed for global gamejam 2014 within 48 hours.
 
-![Screenshot](http://maunovaha.com/assets/images/games/stupidbusiness_3.png)
+![Screenshot](/stupid-business.jpg)
 
 ### Play
 
